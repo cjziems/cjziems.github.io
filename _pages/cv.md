@@ -3,7 +3,7 @@ layout: page
 permalink: /cv/
 title: cv
 nav: true
-order: 2
+order: 3
 description:
 ---
 <a href="/assets/pdf/cv.pdf"  target="_blank"> [download cv]</a>
