@@ -23,12 +23,12 @@ Next, you will need to prepare these documents:
 
 Finally, you will need to include *three* letters of recommendation. That's it!
 
-For more details, you can find everything on the [NSF GRFP webpage](https://www.nsfgrfp.org/).
+For more details, you can find everything on the [**NSF GRFP webpage**](https://www.nsfgrfp.org/).
 
 ### Advice
 I applied for the fellowship in 2020 as a first-year PhD student, and am very grateful to have been selected. For me, an important part of the application process was **interacting** with previous recipients and **reading** over their materials. 
 
-There is a [blog post](https://www.alexhunterlang.com/nsf-fellowship) by Alex Lang that outlines absolutely everything you might ever need to know about applying. He maintains a collection of successful essays [here](https://docs.google.com/spreadsheets/d/1xoezGhbtcpg3BvNdag2F5dTQM-Xl2EELUgAfG1eUg0s). 
+There is a [**blog post**](https://www.alexhunterlang.com/nsf-fellowship) by Alex Lang that outlines absolutely everything you might ever need to know about applying. He maintains a collection of successful essays [**here**](https://docs.google.com/spreadsheets/d/1xoezGhbtcpg3BvNdag2F5dTQM-Xl2EELUgAfG1eUg0s). 
 
 It can be kind of overwhelming once you realize just how many resources there are telling you how to craft the perfect application. I would say find at least one person you can trust to read over your materials and give you honest feedback.
 
@@ -36,8 +36,8 @@ I asked one of my letter writers, *Do you believe I am a competitive applicant f
 
 ```Definitely go for GRFP. Just do it.``` :smile:
 
-### My Materials
+### My materials
 
-Here is my <a href="/assets/pdf/grfp/Ziems_GRFP_Personal_Statement_2020.pdf">personal statement</a> and my <a href="/assets/pdf/grfp/Ziems_GRFP_Research_Statement_2020.pdf">research statement</a>. Here are my <a href="/assets/pdf/grfp/Ziems_GRFP_Reviews_2020.pdf">reviews</a>.
+Here is my <a href="/assets/pdf/grfp/Ziems_GRFP_Personal_Statement_2020.pdf">**personal statement**</a> and my <a href="/assets/pdf/grfp/Ziems_GRFP_Research_Statement_2020.pdf">**research statement**</a>. Here are my <a href="/assets/pdf/grfp/Ziems_GRFP_Reviews_2020.pdf">**reviews**</a>.
 
 Please feel free to reach out!

@@ -31,7 +31,7 @@
                 <em>{{author.last}}, {{author.first}}</em>,
               {% else %}
                 {% if site.data.coauthors[author.last] %}
-                  <a href="{{site.data.coauthors[author.last].url}}" target="_blank">{{author.last}}, {{author.first}}</a>,
+                  <b><a href="{{site.data.coauthors[author.last].url}}" target="_blank">{{author.last}}, {{author.first}}</a></b>,
                 {% else %}
                   {{author.last}}, {{author.first}},
                 {% endif %}
@@ -41,7 +41,7 @@
                 and <em>{{author.last}}, {{author.first}}</em>
               {% else %}
                 {% if site.data.coauthors[author.last] %}
-                  and <a href="{{site.data.coauthors[author.last].url}}" target="_blank">{{author.last}}, {{author.first}}</a>
+                  and <b><a href="{{site.data.coauthors[author.last].url}}" target="_blank">{{author.last}}, {{author.first}}</a></b>
                 {% else %}
                   and {{author.last}}, {{author.first}}
                 {% endif %}
@@ -65,37 +65,37 @@
 
     <span class="links">
     {% if entry.abstract %}
-      [<a class="abstract">abs</a>]
+      [<a class="abstract"><b>abs</b></a>]
     {% endif %}
     {% if entry.arxiv %}
-      [<a href="http://arxiv.org/abs/{{ entry.arxiv }}" target="_blank">arXiv</a>]
+      [<a href="http://arxiv.org/abs/{{ entry.arxiv }}" target="_blank"><b>arXiv</b></a>]
     {% endif %}
     {% if entry.html %}
-      [<a href="{{ entry.html }}" target="_blank">html</a>]
+      [<a href="{{ entry.html }}" target="_blank"><b>html</b></a>]
     {% endif %}
     {% if entry.pdf %}
-      [<a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" target="_blank">pdf</a>]
+      [<a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" target="_blank"><b>pdf</b></a>]
     {% endif %}
     {% if entry.web %}
-      [<a href="{{ entry.web }}" target="_blank">project webpage</a>]
+      [<a href="{{ entry.web }}" target="_blank"><b>project webpage</b></a>]
     {% endif %}
     {% if entry.supp %}
-      [<a href="{{ entry.supp | prepend: '/assets/pdf/' | relative_url }}" target="_blank">supp</a>]
+      [<a href="{{ entry.supp | prepend: '/assets/pdf/' | relative_url }}" target="_blank"><b>supp</b></a>]
     {% endif %}
     {% if entry.poster %}
-      [<a href="{{ entry.poster }}" target="_blank">poster</a>]
+      [<a href="{{ entry.poster }}" target="_blank"><b>poster</b></a>]
     {% endif %}
     {% if entry.slides %}
-      [<a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" target="_blank">slides</a>]
+      [<a href="{{ entry.slides | prepend: '/assets/pdf/' | relative_url }}" target="_blank"><b>slides</b></a>]
     {% endif %}
     {% if entry.talk %}
-      [<a href="{{ entry.talk }}" target="_blank">talk</a>]
+      [<a href="{{ entry.talk }}" target="_blank"><b>talk</b></a>]
     {% endif %}
     {% if entry.data %}
-      [<a href="{{ entry.data }}" target="_blank">data</a>]
+      [<a href="{{ entry.data }}" target="_blank"><b>data</b></a>]
     {% endif %}
     {% if entry.code %}
-      [<a href="{{ entry.code }}" target="_blank">code</a>]
+      [<a href="{{ entry.code }}" target="_blank"><b>code</b></a>]
     {% endif %}
     </span>
 
