@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>English Dialect Survey</title>
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        .button{
+            display:inline-block;
+            padding:6px 12px;
+            margin-bottom:0;
+            font-size:14px;
+            font-weight:normal;
+            line-height:1.428571429;
+            text-align:center;
+            white-space:nowrap;
+            vertical-align:middle;
+            cursor:pointer;
+            background-image:none;
+            border:1px solid transparent;
+            border-radius:4px;
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            -o-user-select:none;
+            user-select:none
+        }
+        .button-accept {
+            color:#fff;
+            background-color:#78A65A;
+            border-color:#357ebd
+        }
+
+        .button-decline {
+            color:#fff;
+            background-color:#BB271A;
+            border-color:#357ebd
+        }
+
+        .excerpt {
+          margin-bottom: 30;
+           margin-left:10;
+           width: 100%;
+           min-width: 500px;
+           border:2px #333333;
+           background-color: #f2f2f2;
+           border-style: solid;
+           padding-right:10px;
+           padding-left:10px;
+           display:table;
+           border-radius:15px;
+           margin: auto;
+        }
+
+        .output {
+          margin-bottom: 30;
+           margin-left:10;
+           width: 50%;
+           min-width: 500px;
+           border:2px #333333;
+           background-color: #f2f2f2;
+           border-style: solid;
+           padding-right:10px;
+           padding-left:10px;
+           display:table;
+           border-radius:15px;
+           margin: auto;
+        }
+
+        .center {
+            margin: auto;
+            width: 40%;
+            padding: 10px;
+        }
+
+        .excerpt-text {
+            font-size:20pt;
+            padding: 10px;
+        }
+
+        .languages_list {
+            font-size:18px;
+        }
+    </style>
+
+    <script>
+
+    </script>
+  </head>
+  <body onload="retrieveNext();">
+    <h1 style="text-align: center;">English Dialect Survey</h1>
+    <div style="height:450px">
+        <div class='center'>
+            <h4>(1) Standard English Gloss:</h4>
+            <div class="excerpt" style="margin-top: 40">
+                <div style="padding-left:20px;">
+                    <em><p class="excerpt-text" id="query_alt"></p></em>
+                </div>
+            </div>
+        </div>
+
+        <div class='center'>
+            <h4>(2) Dialect Excerpt:</h4>
+            <div class="excerpt" style="margin-top: 40">
+                <div style="padding-left:20px;">
+                    <em><p class="excerpt-text" id="query_dialect"></p></em>
+                </div>
+            </div>
+            <p style="text-align: right;"><b>Description:</b> <span id='parameter_name'></span></p>
+        </div>                      
+    </div>
+
+    <!-- <input type="text" id="search" name="search"> -->
+    <center>
+        <input class="button button-accept" onclick="acceptIt();" value="Acceptable">
+        <input class="button button-decline" onclick="declineIt();" value="Not Acceptable">
+    </center>
+<!--    <center onclick="getNext()">
+        <input class="btn btn-primary" id="submitButton" onclick="getNext()" type="submit" value="Submit">
+    </center> -->
+    <br>
+    <br>
+    <div class='output'>
+        <h4>Matched Dialect:</h4>
+        <p id='mtch_d'>(Not Decided Yet)</p>
+        <div id='languages_div'></div>
+    </div>
+
+    <script>
+
+        function makeList(listData) {
+            document.getElementById('mtch_d').innerText = '';
+            var listContainer = document.getElementById('languages_div');
+            var listElement = document.createElement('ul');
+            listElement.setAttribute("id", "languages_list");
+
+            listContainer.appendChild(listElement);
+
+            var numberOfListItems = listData.length;
+
+            for (var i = 0; i < numberOfListItems; ++i) {
+                var listItem = document.createElement('li');
+                var language = language_names[listData[i].toString()];
+                var a = document.createElement("a");
+                a.textContent = language["name"];
+                a.setAttribute('href', language["link"]);
+                listElement.appendChild(a);
+            }
+        }
+
+        function acceptIt() {
+            if (!(decision_tree["1"].hasOwnProperty("LANGUAGES"))) {
+                getNext("1");
+            }
+            else {
+                alert('You have a matched dialect.');
+                makeList(decision_tree["1"]['LANGUAGES']);
+            }
+        }
+
+        function declineIt() {
+            if (!(decision_tree["0"].hasOwnProperty("LANGUAGES"))) {
+                getNext("0");
+            }
+            else if (decision_tree["0"].hasOwnProperty("LANGUAGES")) {
+                alert('You have a matched dialect.');
+                makeList(decision_tree["0"]['LANGUAGES']);
+            }
+            else {
+                alert('The survey is complete.');
+            }
+        }
+
+        function getNext(num) {
+
+            // first, traverse the tree
+            var q = decision_tree[num]["q"];
+            var one = decision_tree[num]["1"];
+            var zero = decision_tree[num]["0"];
+            decision_tree['q'] = q;
+            decision_tree['1'] = one;
+            decision_tree['0'] = zero;
+
+            // then, retrieve the next question
+            retrieveNext();
+        }
+
+        function retrieveNext() {
+            var q = decision_tree['q'];
+            var question = question_lookup[q];
+            document.getElementById("query_dialect").innerHTML = question["query_dialect"]; 
+            document.getElementById("query_alt").innerHTML = question["query_alt"]; 
+            document.getElementById("parameter_name").innerHTML = `<a href='https://ewave-atlas.org/parameters/${q}' target="_blank">${question["parameter_name"]}</a>` ; 
+        }
+
+        var language_names = {"1": {"name": "Orkney and Shetland English", "link": "https://ewave-atlas.org/languages/1"}, "2": {"name": "Scottish English", "link": "https://ewave-atlas.org/languages/2"}, "3": {"name": "Irish English", "link": "https://ewave-atlas.org/languages/3"}, "5": {"name": "Welsh English", "link": "https://ewave-atlas.org/languages/5"}, "18": {"name": "Ozark English", "link": "https://ewave-atlas.org/languages/18"}, "20": {"name": "Southeast American enclave dialects", "link": "https://ewave-atlas.org/languages/20"}, "23": {"name": "Bahamian English", "link": "https://ewave-atlas.org/languages/23"}, "54": {"name": "Butler English", "link": "https://ewave-atlas.org/languages/54"}, "60": {"name": "Australian Vernacular English", "link": "https://ewave-atlas.org/languages/60"}, "61": {"name": "Aboriginal English", "link": "https://ewave-atlas.org/languages/61"}, "64": {"name": "New Zealand English", "link": "https://ewave-atlas.org/languages/64"}, "68": {"name": "Pure Fiji English (basilectal FijiE)", "link": "https://ewave-atlas.org/languages/68"}, "72": {"name": "Falkland Islands English", "link": "https://ewave-atlas.org/languages/72"}, "74": {"name": "Tristan da Cunha English", "link": "https://ewave-atlas.org/languages/74"}, "7": {"name": "English dialects in the Southwest of England", "link": "https://ewave-atlas.org/languages/7"}, "13": {"name": "Newfoundland English", "link": "https://ewave-atlas.org/languages/13"}, "24": {"name": "Bahamian Creole", "link": "https://ewave-atlas.org/languages/24"}, "27": {"name": "Jamaican Creole", "link": "https://ewave-atlas.org/languages/27"}, "30": {"name": "Guyanese Creole (Creolese)", "link": "https://ewave-atlas.org/languages/30"}, "66": {"name": "Palmerston English", "link": "https://ewave-atlas.org/languages/66"}, "19": {"name": "Appalachian English", "link": "https://ewave-atlas.org/languages/19"}, "25": {"name": "Barbadian Creole (Bajan)", "link": "https://ewave-atlas.org/languages/25"}, "33": {"name": "Sranan", "link": "https://ewave-atlas.org/languages/33"}, "70": {"name": "Tok Pisin", "link": "https://ewave-atlas.org/languages/70"}, "29": {"name": "Belizean Creole", "link": "https://ewave-atlas.org/languages/29"}, "52": {"name": "Indian English", "link": "https://ewave-atlas.org/languages/52"}, "73": {"name": "St. Helena English", "link": "https://ewave-atlas.org/languages/73"}, "4": {"name": "Manx English", "link": "https://ewave-atlas.org/languages/4"}, "6": {"name": "English dialects in the North of England", "link": "https://ewave-atlas.org/languages/6"}, "8": {"name": "East Anglian English", "link": "https://ewave-atlas.org/languages/8"}, "9": {"name": "English dialects in the Southeast of England", "link": "https://ewave-atlas.org/languages/9"}, "10": {"name": "Channel Islands English", "link": "https://ewave-atlas.org/languages/10"}, "12": {"name": "Maltese English", "link": "https://ewave-atlas.org/languages/12"}, "14": {"name": "Colloquial American English", "link": "https://ewave-atlas.org/languages/14"}, "16": {"name": "Rural African American Vernacular English", "link": "https://ewave-atlas.org/languages/16"}, "17": {"name": "Earlier African American Vernacular English", "link": "https://ewave-atlas.org/languages/17"}, "22": {"name": "Chicano English", "link": "https://ewave-atlas.org/languages/22"}, "28": {"name": "San Andres Creole", "link": "https://ewave-atlas.org/languages/28"}, "34": {"name": "Trinidadian Creole", "link": "https://ewave-atlas.org/languages/34"}, "37": {"name": "Liberian Settler English", "link": "https://ewave-atlas.org/languages/37"}, "41": {"name": "Nigerian English", "link": "https://ewave-atlas.org/languages/41"}, "43": {"name": "Cameroon English", "link": "https://ewave-atlas.org/languages/43"}, "45": {"name": "Tanzanian English", "link": "https://ewave-atlas.org/languages/45"}, "46": {"name": "Kenyan English", "link": "https://ewave-atlas.org/languages/46"}, "47": {"name": "Ugandan English", "link": "https://ewave-atlas.org/languages/47"}, "48": {"name": "White Zimbabwean English", "link": "https://ewave-atlas.org/languages/48"}, "49": {"name": "Black South African English", "link": "https://ewave-atlas.org/languages/49"}, "50": {"name": "Indian South African English", "link": "https://ewave-atlas.org/languages/50"}, "51": {"name": "White South African English", "link": "https://ewave-atlas.org/languages/51"}, "53": {"name": "Pakistani English", "link": "https://ewave-atlas.org/languages/53"}, "55": {"name": "Sri Lankan English", "link": "https://ewave-atlas.org/languages/55"}, "56": {"name": "Hong Kong English", "link": "https://ewave-atlas.org/languages/56"}, "57": {"name": "Colloquial Singapore English (Singlish)", "link": "https://ewave-atlas.org/languages/57"}, "58": {"name": "Malaysian English", "link": "https://ewave-atlas.org/languages/58"}, "65": {"name": "Norfolk Island/ Pitcairn English", "link": "https://ewave-atlas.org/languages/65"}, "67": {"name": "Acrolectal Fiji English", "link": "https://ewave-atlas.org/languages/67"}, "71": {"name": "Hawaii Creole", "link": "https://ewave-atlas.org/languages/71"}, "76": {"name": "Cape Flats English", "link": "https://ewave-atlas.org/languages/76"}, "15": {"name": "Urban African American Vernacular English", "link": "https://ewave-atlas.org/languages/15"}, "38": {"name": "Vernacular Liberian English", "link": "https://ewave-atlas.org/languages/38"}, "21": {"name": "Gullah", "link": "https://ewave-atlas.org/languages/21"}, "26": {"name": "Jamaican English", "link": "https://ewave-atlas.org/languages/26"}, "42": {"name": "Nigerian Pidgin", "link": "https://ewave-atlas.org/languages/42"}, "44": {"name": "Cameroon Pidgin", "link": "https://ewave-atlas.org/languages/44"}, "59": {"name": "Australian English", "link": "https://ewave-atlas.org/languages/59"}, "75": {"name": "Philippine English", "link": "https://ewave-atlas.org/languages/75"}, "32": {"name": "Saramaccan", "link": "https://ewave-atlas.org/languages/32"}, "35": {"name": "Vincentian Creole", "link": "https://ewave-atlas.org/languages/35"}, "36": {"name": "Krio (Sierra Leone Creole)", "link": "https://ewave-atlas.org/languages/36"}, "39": {"name": "Ghanaian English", "link": "https://ewave-atlas.org/languages/39"}, "40": {"name": "Ghanaian Pidgin", "link": "https://ewave-atlas.org/languages/40"}, "11": {"name": "British Creole", "link": "https://ewave-atlas.org/languages/11"}, "63": {"name": "Torres Strait Creole", "link": "https://ewave-atlas.org/languages/63"}, "62": {"name": "Roper River Creole (Kriol)", "link": "https://ewave-atlas.org/languages/62"}, "69": {"name": "Bislama", "link": "https://ewave-atlas.org/languages/69"}, "31": {"name": "Eastern Maroon Creole", "link": "https://ewave-atlas.org/languages/31"}}
+
+        var decision_tree = {"q": "70", "0": {"q": "71", "0": {"q": "55", "0": {"q": "1", "0": {"q": "26", "0": {"q": "3", "0": {"q": "5", "0": {"q": "16", "0": {"q": "3", "LANGUAGES": [10]}, "1": {"q": "1", "LANGUAGES": [53]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [70]}, "1": {"q": "2", "LANGUAGES": [62]}}}, "1": {"q": "5", "0": {"q": "6", "0": {"q": "1", "LANGUAGES": [53]}, "1": {"q": "1", "LANGUAGES": [65]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [69]}, "1": {"q": "2", "LANGUAGES": [62]}}}}, "1": {"q": "9", "0": {"q": "2", "0": {"q": "72", "0": {"q": "11", "0": {"q": "3", "LANGUAGES": [10]}, "1": {"q": "1", "LANGUAGES": [9]}}, "1": {"q": "14", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "1", "LANGUAGES": [9]}}}, "1": {"q": "29", "0": {"q": "11", "0": {"q": "3", "LANGUAGES": [10]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "14", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [7]}}}}, "1": {"q": "13", "0": {"q": "2", "0": {"q": "5", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "14", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "4", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [62]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "5", "0": {"q": "2", "LANGUAGES": [73]}, "1": {"q": "2", "LANGUAGES": [62]}}}}}}, "1": {"q": "9", "0": {"q": "2", "0": {"q": "11", "0": {"q": "12", "0": {"q": "29", "0": {"q": "3", "LANGUAGES": [10]}, "1": {"q": "1", "LANGUAGES": [72]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [72]}, "1": {"q": "1", "LANGUAGES": [64]}}}, "1": {"q": "33", "0": {"q": "19", "0": {"q": "1", "LANGUAGES": [72]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "13", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "1", "LANGUAGES": [74]}}}}, "1": {"q": "3", "0": {"q": "12", "0": {"q": "11", "0": {"q": "3", "LANGUAGES": [10]}, "1": {"q": "1", "LANGUAGES": [13]}}, "1": {"q": "14", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "31", "0": {"q": "30", "0": {"q": "19", "0": {"q": "1", "LANGUAGES": [60]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}}, "1": {"q": "14", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}}, "1": {"q": "3", "0": {"q": "16", "0": {"q": "31", "0": {"q": "2", "0": {"q": "5", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}}, "1": {"q": "14", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}}}, "1": {"q": "22", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [62]}, "1": {"q": "1", "LANGUAGES": [13]}}, "1": {"q": "23", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "2", "LANGUAGES": [73]}}}}, "1": {"q": "35", "0": {"q": "2", "0": {"q": "5", "0": {"q": "1", "LANGUAGES": [64]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "1", "LANGUAGES": [60]}}}, "1": {"q": "31", "0": {"q": "2", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [64]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}}, "1": {"q": "14", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}}}}, "1": {"q": "54", "0": {"q": "49", "0": {"q": "14", "0": {"q": "8", "0": {"q": "16", "0": {"q": "40", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [55]}}, "1": {"q": "39", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [53]}}}, "1": {"q": "34", "0": {"q": "45", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [47]}}, "1": {"q": "39", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [53]}}}}, "1": {"q": "3", "0": {"q": "16", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "34", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "1", "LANGUAGES": [53]}}}, "1": {"q": "13", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [53]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [34]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}, "1": {"q": "9", "0": {"q": "12", "0": {"q": "41", "0": {"q": "1", "LANGUAGES": [45]}, "1": {"q": "2", "LANGUAGES": [67]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [34]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "12", "0": {"q": "3", "0": {"q": "2", "LANGUAGES": [67]}, "1": {"q": "1", "LANGUAGES": [43]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [73]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}, "1": {"q": "11", "0": {"q": "45", "0": {"q": "8", "0": {"q": "14", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [57]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [34]}}}, "1": {"q": "8", "0": {"q": "3", "0": {"q": "2", "LANGUAGES": [67]}, "1": {"q": "1", "LANGUAGES": [57]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [67]}, "1": {"q": "1", "LANGUAGES": [48]}}}}, "1": {"q": "9", "0": {"q": "2", "0": {"q": "3", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [37]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "1", "0": {"q": "13", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [73]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "4", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [73]}, "1": {"q": "1", "LANGUAGES": [13]}}}}}}}}, "1": {"q": "16", "0": {"q": "66", "0": {"q": "14", "0": {"q": "48", "0": {"q": "1", "0": {"q": "43", "0": {"q": "10", "0": {"q": "3", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "1", "LANGUAGES": [39]}}, "1": {"q": "59", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "1", "LANGUAGES": [39]}}}, "1": {"q": "3", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [12]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "2", "LANGUAGES": [12]}}}}, "1": {"q": "3", "0": {"q": "34", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "1", "LANGUAGES": [1]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [2]}, "1": {"q": "2", "LANGUAGES": [12]}}}, "1": {"q": "41", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [2]}, "1": {"q": "2", "LANGUAGES": [12]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "2", "LANGUAGES": [12]}}}}}, "1": {"q": "41", "0": {"q": "34", "0": {"q": "43", "0": {"q": "49", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "1", "LANGUAGES": [45]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [12]}}}, "1": {"q": "46", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [12]}}}}, "1": {"q": "3", "0": {"q": "28", "0": {"q": "34", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "1", "LANGUAGES": [41]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "2", "LANGUAGES": [12]}}}, "1": {"q": "46", "0": {"q": "28", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [75]}}, "1": {"q": "10", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "2", "LANGUAGES": [75]}}}, "1": {"q": "28", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [75]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "2", "LANGUAGES": [12]}}}}}}}, "1": {"q": "46", "0": {"q": "49", "0": {"q": "41", "0": {"q": "3", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [51]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "3", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [76]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "2", "LANGUAGES": [76]}}}}, "1": {"q": "41", "0": {"q": "11", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [51]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "28", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [75]}}, "1": {"q": "59", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "4", "LANGUAGES": [49]}}}}}, "1": {"q": "43", "0": {"q": "3", "0": {"q": "11", "0": {"q": "52", "0": {"q": "34", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "1", "LANGUAGES": [41]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "4", "LANGUAGES": [49]}}}, "1": {"q": "2", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "4", "LANGUAGES": [49]}}, "1": {"q": "10", "0": {"q": "2", "LANGUAGES": [7]}, "1": {"q": "4", "LANGUAGES": [49]}}}}, "1": {"q": "10", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "59", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "4", "LANGUAGES": [49]}}}}, "1": {"q": "47", "0": {"q": "3", "0": {"q": "9", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "9", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "2", "LANGUAGES": [7]}}}}, "1": {"q": "3", "0": {"q": "9", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "8", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [65]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}}}}, "1": {"q": "99", "0": {"q": "41", "0": {"q": "11", "0": {"q": "3", "0": {"q": "28", "0": {"q": "5", "0": {"q": "1", "LANGUAGES": [45]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "5", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "2", "LANGUAGES": [62]}}}, "1": {"q": "5", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [62]}}}}, "1": {"q": "8", "0": {"q": "20", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [40]}, "1": {"q": "2", "LANGUAGES": [62]}}}, "1": {"q": "1", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [62]}, "1": {"q": "1", "LANGUAGES": [54]}}}}}, "1": {"q": "44", "0": {"q": "10", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [56]}}}, "1": {"q": "4", "0": {"q": "1", "0": {"q": "1", "LANGUAGES": [65]}, "1": {"q": "1", "LANGUAGES": [54]}}, "1": {"q": "1", "0": {"q": "1", "LANGUAGES": [52]}, "1": {"q": "1", "LANGUAGES": [54]}}}}}, "1": {"q": "52", "0": {"q": "10", "0": {"q": "3", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [45]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "28", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [46]}}}, "1": {"q": "1", "0": {"q": "59", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "1", "LANGUAGES": [39]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "1", "LANGUAGES": [54]}}}}, "1": {"q": "10", "0": {"q": "22", "0": {"q": "6", "0": {"q": "1", "LANGUAGES": [50]}, "1": {"q": "3", "LANGUAGES": [71]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "3", "LANGUAGES": [71]}}}, "1": {"q": "3", "0": {"q": "22", "0": {"q": "4", "LANGUAGES": [49]}, "1": {"q": "1", "LANGUAGES": [38]}}, "1": {"q": "59", "0": {"q": "2", "LANGUAGES": [75]}, "1": {"q": "4", "LANGUAGES": [49]}}}}}}}, "1": {"q": "60", "0": {"q": "54", "0": {"q": "11", "0": {"q": "43", "0": {"q": "42", "0": {"q": "48", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [41]}}, "1": {"q": "28", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [46]}}}, "1": {"q": "8", "0": {"q": "5", "0": {"q": "3", "LANGUAGES": [71]}, "1": {"q": "2", "LANGUAGES": [62]}}, "1": {"q": "5", "0": {"q": "2", "LANGUAGES": [51]}, "1": {"q": "2", "LANGUAGES": [62]}}}}, "1": {"q": "10", "0": {"q": "41", "0": {"q": "3", "0": {"q": "1", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "1", "LANGUAGES": [74]}}, "1": {"q": "48", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [41]}}}, "1": {"q": "64", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [41]}, "1": {"q": "1", "LANGUAGES": [43]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [43]}}}}, "1": {"q": "8", "0": {"q": "5", "0": {"q": "14", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [65]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [62]}}}, "1": {"q": "5", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "1", "LANGUAGES": [43]}}, "1": {"q": "9", "0": {"q": "1", "LANGUAGES": [39]}, "1": {"q": "2", "LANGUAGES": [62]}}}}}}, "1": {"q": "44", "0": {"q": "3", "0": {"q": "1", "0": {"q": "9", "0": {"q": "11", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "1", "LANGUAGES": [38]}}, "1": {"q": "11", "0": {"q": "2", "LANGUAGES": [76]}, "1": {"q": "1", "LANGUAGES": [38]}}}, "1": {"q": "9", "0": {"q": "11", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "1", "LANGUAGES": [74]}}, "1": {"q": "11", "0": {"q": "2", "LANGUAGES": [76]}, "1": {"q": "1", "LANGUAGES": [74]}}}}, "1": {"q": "49", "0": {"q": "9", "0": {"q": "14", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "2", "LANGUAGES": [51]}}, "1": {"q": "29", "0": {"q": "2", "LANGUAGES": [76]}, "1": {"q": "2", "LANGUAGES": [51]}}}, "1": {"q": "39", "0": {"q": "14", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "1", "LANGUAGES": [50]}}, "1": {"q": "23", "0": {"q": "2", "LANGUAGES": [51]}, "1": {"q": "1", "LANGUAGES": [50]}}}}}, "1": {"q": "41", "0": {"q": "22", "0": {"q": "6", "0": {"q": "2", "LANGUAGES": [51]}, "1": {"q": "3", "LANGUAGES": [71]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "3", "LANGUAGES": [71]}}}, "1": {"q": "32", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [50]}, "1": {"q": "1", "LANGUAGES": [58]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [50]}, "1": {"q": "1", "LANGUAGES": [65]}}}}}}, "1": {"q": "11", "0": {"q": "41", "0": {"q": "49", "0": {"q": "1", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "1", "LANGUAGES": [1]}}}, "1": {"q": "34", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [45]}, "1": {"q": "2", "LANGUAGES": [12]}}, "1": {"q": "9", "0": {"q": "2", "LANGUAGES": [46]}, "1": {"q": "2", "LANGUAGES": [12]}}}}, "1": {"q": "9", "0": {"q": "14", "0": {"q": "28", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "2", "LANGUAGES": [46]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [47]}, "1": {"q": "4", "LANGUAGES": [49]}}}, "1": {"q": "54", "0": {"q": "10", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "1", "LANGUAGES": [56]}}, "1": {"q": "10", "0": {"q": "2", "LANGUAGES": [12]}, "1": {"q": "4", "LANGUAGES": [49]}}}}}, "1": {"q": "10", "0": {"q": "9", "0": {"q": "21", "0": {"q": "1", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [2]}}, "1": {"q": "1", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [74]}}}, "1": {"q": "1", "0": {"q": "4", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "2", "LANGUAGES": [73]}}, "1": {"q": "23", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "2", "LANGUAGES": [73]}}}}, "1": {"q": "12", "0": {"q": "3", "0": {"q": "22", "0": {"q": "4", "LANGUAGES": [49]}, "1": {"q": "1", "LANGUAGES": [38]}}, "1": {"q": "7", "0": {"q": "1", "LANGUAGES": [65]}, "1": {"q": "4", "LANGUAGES": [49]}}}, "1": {"q": "20", "0": {"q": "3", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [65]}}, "1": {"q": "1", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [54]}}}}}}}}}, "1": {"q": "16", "0": {"q": "139", "0": {"q": "21", "0": {"q": "52", "0": {"q": "3", "0": {"q": "11", "0": {"q": "9", "0": {"q": "45", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [45]}}, "1": {"q": "55", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [26]}}}, "1": {"q": "2", "0": {"q": "4", "0": {"q": "1", "LANGUAGES": [19]}, "1": {"q": "4", "LANGUAGES": [63]}}, "1": {"q": "4", "0": {"q": "2", "LANGUAGES": [7]}, "1": {"q": "4", "LANGUAGES": [63]}}}}, "1": {"q": "2", "0": {"q": "29", "0": {"q": "4", "0": {"q": "55", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [26]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "4", "LANGUAGES": [63]}}}, "1": {"q": "4", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "4", "LANGUAGES": [63]}}}}, "1": {"q": "22", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "4", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "4", "LANGUAGES": [63]}}}}}, "1": {"q": "56", "0": {"q": "22", "0": {"q": "14", "0": {"q": "55", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [26]}}, "1": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}}, "1": {"q": "3", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [38]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [66]}}}}, "1": {"q": "33", "0": {"q": "3", "0": {"q": "2", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [14]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "2", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [7]}}}}, "1": {"q": "12", "0": {"q": "38", "0": {"q": "1", "LANGUAGES": [19]}, "1": {"q": "2", "LANGUAGES": [14]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [7]}}}}}}, "1": {"q": "18", "0": {"q": "5", "0": {"q": "20", "0": {"q": "13", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "2", "LANGUAGES": [16]}}, "1": {"q": "13", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [17]}}}, "1": {"q": "9", "0": {"q": "6", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [36]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "4", "LANGUAGES": [21]}}}}, "1": {"q": "51", "0": {"q": "52", "0": {"q": "7", "0": {"q": "1", "LANGUAGES": [32]}, "1": {"q": "1", "LANGUAGES": [33]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [33]}, "1": {"q": "1", "LANGUAGES": [31]}}}, "1": {"q": "32", "0": {"q": "5", "0": {"q": "1", "LANGUAGES": [28]}, "1": {"q": "1", "LANGUAGES": [11]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [33]}, "1": {"q": "1", "LANGUAGES": [11]}}}}}}, "1": {"q": "72", "0": {"q": "1", "0": {"q": "12", "0": {"q": "10", "0": {"q": "3", "0": {"q": "33", "0": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "13", "0": {"q": "1", "LANGUAGES": [19]}, "1": {"q": "1", "LANGUAGES": [17]}}}, "1": {"q": "2", "0": {"q": "39", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "2", "LANGUAGES": [15]}}, "1": {"q": "20", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [17]}}}}, "1": {"q": "20", "0": {"q": "21", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [66]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [15]}}}, "1": {"q": "5", "0": {"q": "39", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "2", "LANGUAGES": [15]}}, "1": {"q": "6", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [42]}}}}}, "1": {"q": "44", "0": {"q": "3", "0": {"q": "9", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [9]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "35", "0": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [7]}}}}, "1": {"q": "3", "0": {"q": "9", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [9]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "30", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [66]}}, "1": {"q": "22", "0": {"q": "2", "LANGUAGES": [7]}, "1": {"q": "1", "LANGUAGES": [66]}}}}}}, "1": {"q": "13", "0": {"q": "44", "0": {"q": "30", "0": {"q": "9", "0": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "6", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "5", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "1", "LANGUAGES": [68]}}}}, "1": {"q": "30", "0": {"q": "2", "0": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "25", "0": {"q": "1", "LANGUAGES": [60]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "6", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "5", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "1", "LANGUAGES": [68]}}}}}, "1": {"q": "4", "0": {"q": "21", "0": {"q": "30", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "2", "LANGUAGES": [7]}}}, "1": {"q": "5", "0": {"q": "57", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [15]}}}, "1": {"q": "2", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [68]}}}}}, "1": {"q": "5", "0": {"q": "21", "0": {"q": "2", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "15", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [13]}}}, "1": {"q": "57", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [15]}}}}, "1": {"q": "6", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "8", "0": {"q": "1", "LANGUAGES": [61]}, "1": {"q": "1", "LANGUAGES": [68]}}}}}}}, "1": {"q": "14", "0": {"q": "38", "0": {"q": "89", "0": {"q": "3", "0": {"q": "2", "0": {"q": "4", "0": {"q": "4", "LANGUAGES": [6]}, "1": {"q": "2", "LANGUAGES": [8]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}}, "1": {"q": "30", "0": {"q": "19", "0": {"q": "1", "LANGUAGES": [60]}, "1": {"q": "4", "LANGUAGES": [6]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "4", "LANGUAGES": [6]}}}}, "1": {"q": "45", "0": {"q": "2", "0": {"q": "2", "LANGUAGES": [4]}, "1": {"q": "1", "LANGUAGES": [5]}}, "1": {"q": "15", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [13]}}}}, "1": {"q": "46", "0": {"q": "2", "0": {"q": "13", "0": {"q": "3", "0": {"q": "2", "LANGUAGES": [14]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "12", "0": {"q": "15", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [13]}}, "1": {"q": "25", "0": {"q": "1", "LANGUAGES": [60]}, "1": {"q": "1", "LANGUAGES": [20]}}}}, "1": {"q": "21", "0": {"q": "23", "0": {"q": "15", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [13]}}, "1": {"q": "1", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [13]}}}, "1": {"q": "2", "0": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [20]}, "1": {"q": "1", "LANGUAGES": [68]}}}}}}, "1": {"q": "2", "0": {"q": "1", "0": {"q": "9", "0": {"q": "34", "0": {"q": "3", "0": {"q": "1", "LANGUAGES": [9]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}}, "1": {"q": "12", "0": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [15]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [59]}}}}, "1": {"q": "13", "0": {"q": "9", "0": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "57", "0": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [15]}}}}}, "1": {"q": "25", "0": {"q": "15", "0": {"q": "120", "0": {"q": "1", "LANGUAGES": [5]}, "1": {"q": "2", "LANGUAGES": [7]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [13]}, "1": {"q": "1", "LANGUAGES": [5]}}}, "1": {"q": "6", "0": {"q": "1", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "1", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [68]}}}}}}}}, "1": {"q": "51", "0": {"q": "64", "0": {"q": "60", "0": {"q": "1", "0": {"q": "39", "0": {"q": "3", "0": {"q": "10", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "5", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "1", "LANGUAGES": [33]}}}, "1": {"q": "11", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "2", "LANGUAGES": [59]}}}}, "1": {"q": "14", "0": {"q": "33", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [14]}}, "1": {"q": "38", "0": {"q": "1", "LANGUAGES": [19]}, "1": {"q": "2", "LANGUAGES": [14]}}}, "1": {"q": "3", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [19]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [15]}}}}}, "1": {"q": "3", "0": {"q": "11", "0": {"q": "5", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [25]}}, "1": {"q": "13", "0": {"q": "2", "LANGUAGES": [14]}, "1": {"q": "1", "LANGUAGES": [74]}}}, "1": {"q": "39", "0": {"q": "11", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "13", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "69", "0": {"q": "2", "LANGUAGES": [15]}, "1": {"q": "1", "LANGUAGES": [20]}}}}}}, "1": {"q": "14", "0": {"q": "72", "0": {"q": "43", "0": {"q": "1", "0": {"q": "9", "0": {"q": "1", "LANGUAGES": [45]}, "1": {"q": "4", "LANGUAGES": [22]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "2", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [74]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [13]}}}}, "1": {"q": "2", "0": {"q": "45", "0": {"q": "3", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [14]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [18]}}}, "1": {"q": "41", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [18]}}}}, "1": {"q": "41", "0": {"q": "43", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [13]}}}, "1": {"q": "29", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [18]}}, "1": {"q": "15", "0": {"q": "1", "LANGUAGES": [18]}, "1": {"q": "1", "LANGUAGES": [13]}}}}}}, "1": {"q": "45", "0": {"q": "3", "0": {"q": "1", "0": {"q": "5", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [33]}}, "1": {"q": "5", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [25]}}}, "1": {"q": "11", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [18]}, "1": {"q": "2", "LANGUAGES": [59]}}}}, "1": {"q": "2", "0": {"q": "39", "0": {"q": "11", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}, "1": {"q": "41", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [18]}}}}, "1": {"q": "41", "0": {"q": "43", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [20]}}, "1": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [13]}}}, "1": {"q": "29", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [18]}}, "1": {"q": "15", "0": {"q": "1", "LANGUAGES": [18]}, "1": {"q": "1", "LANGUAGES": [13]}}}}}}}}, "1": {"q": "43", "0": {"q": "1", "0": {"q": "29", "0": {"q": "9", "0": {"q": "45", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [45]}}, "1": {"q": "55", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [26]}}}, "1": {"q": "14", "0": {"q": "12", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}}}, "1": {"q": "8", "0": {"q": "45", "0": {"q": "3", "0": {"q": "5", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [25]}}, "1": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}}, "1": {"q": "11", "0": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}}, "1": {"q": "11", "0": {"q": "9", "0": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "12", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "2", "LANGUAGES": [59]}}}, "1": {"q": "9", "0": {"q": "15", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "2", "LANGUAGES": [4]}}, "1": {"q": "25", "0": {"q": "2", "LANGUAGES": [59]}, "1": {"q": "1", "LANGUAGES": [20]}}}}}}, "1": {"q": "22", "0": {"q": "12", "0": {"q": "11", "0": {"q": "4", "LANGUAGES": [22]}, "1": {"q": "1", "LANGUAGES": [13]}}, "1": {"q": "4", "0": {"q": "1", "LANGUAGES": [3]}, "1": {"q": "1", "LANGUAGES": [23]}}}, "1": {"q": "5", "0": {"q": "4", "0": {"q": "1", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [74]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "1", "LANGUAGES": [23]}}}, "1": {"q": "1", "0": {"q": "4", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "4", "LANGUAGES": [63]}}, "1": {"q": "6", "0": {"q": "1", "LANGUAGES": [23]}, "1": {"q": "4", "LANGUAGES": [63]}}}}}}}, "1": {"q": "24", "0": {"q": "6", "0": {"q": "4", "0": {"q": "14", "0": {"q": "21", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [66]}}, "1": {"q": "22", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [74]}}}, "1": {"q": "23", "0": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [38]}, "1": {"q": "1", "LANGUAGES": [66]}}}}, "1": {"q": "1", "0": {"q": "22", "0": {"q": "14", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [16]}}, "1": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}}, "1": {"q": "20", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [73]}}, "1": {"q": "12", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "2", "LANGUAGES": [73]}}}}, "1": {"q": "43", "0": {"q": "22", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [73]}}, "1": {"q": "3", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "1", "LANGUAGES": [23]}}}}}, "1": {"q": "17", "0": {"q": "11", "0": {"q": "4", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [66]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [30]}}}, "1": {"q": "3", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [44]}, "1": {"q": "1", "LANGUAGES": [24]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [44]}, "1": {"q": "1", "LANGUAGES": [66]}}}}, "1": {"q": "4", "0": {"q": "9", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [35]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [11]}}}, "1": {"q": "14", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [29]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [29]}, "1": {"q": "2", "LANGUAGES": [30]}}}}}}, "1": {"q": "19", "0": {"q": "14", "0": {"q": "4", "0": {"q": "21", "0": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [66]}}, "1": {"q": "22", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [74]}}}, "1": {"q": "1", "0": {"q": "12", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [16]}}, "1": {"q": "22", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [73]}}}, "1": {"q": "39", "0": {"q": "23", "0": {"q": "1", "LANGUAGES": [74]}, "1": {"q": "2", "LANGUAGES": [73]}}, "1": {"q": "22", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "2", "LANGUAGES": [73]}}}}}, "1": {"q": "10", "0": {"q": "4", "0": {"q": "2", "0": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "20", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [17]}}}, "1": {"q": "1", "0": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "3", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [23]}}}}, "1": {"q": "2", "0": {"q": "22", "0": {"q": "20", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "5", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "4", "LANGUAGES": [63]}}}, "1": {"q": "4", "0": {"q": "20", "0": {"q": "1", "LANGUAGES": [66]}, "1": {"q": "1", "LANGUAGES": [17]}}, "1": {"q": "5", "0": {"q": "1", "LANGUAGES": [17]}, "1": {"q": "4", "LANGUAGES": [63]}}}}}}, "1": {"q": "8", "0": {"q": "2", "0": {"q": "9", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [33]}}, "1": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "4", "LANGUAGES": [21]}}}, "1": {"q": "3", "0": {"q": "15", "0": {"q": "1", "LANGUAGES": [24]}, "1": {"q": "4", "LANGUAGES": [21]}}, "1": {"q": "13", "0": {"q": "2", "LANGUAGES": [27]}, "1": {"q": "4", "LANGUAGES": [21]}}}}, "1": {"q": "22", "0": {"q": "1", "0": {"q": "11", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [16]}}, "1": {"q": "2", "0": {"q": "2", "LANGUAGES": [16]}, "1": {"q": "1", "LANGUAGES": [68]}}}, "1": {"q": "9", "0": {"q": "10", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "1", "LANGUAGES": [44]}}, "1": {"q": "2", "0": {"q": "1", "LANGUAGES": [26]}, "1": {"q": "2", "LANGUAGES": [27]}}}}}}}}}}
+
+        var question_lookup = {
+            "1": {
+                "query_dialect": "<b>She's</b> a good bike",
+                "query_alt": "It's a good bike",
+                "parameter_name": "Using [she/her] for inanimate objects"
+            },
+            "2": {
+                "query_dialect": "The driver's license? She wasn't allowed to renew <b>'im</b> right?",
+                "query_alt": "The driver's license? She wasn't allowed to renew it right?",
+                "parameter_name": "Using [he / him / 'im] for inanimate objects"
+            },
+            "3": {
+                "query_dialect": "Christmas dinner? I think it's better to wait until after she's had <b>the thing.</b>",
+                "query_alt": "Christmas dinner? I think it's better to wait until after she's had it.",
+                "parameter_name": "Using [the thing] instead of [it]"
+            },
+            "4": {
+                "query_dialect": "<b>Thass</b> raining.",
+                "query_alt": "It's raining.",
+                "parameter_name": "Using [that's] instead of [it]"
+            },
+            "5": {
+                "query_dialect": "This old woman, <b>'em</b> started packing up.",
+                "query_alt": "This old woman, she started packing up.",
+                "parameter_name": "Using [him / 'im] instead of [she / it] (subject)"
+            },
+            "6": {
+                "query_dialect": "We just turned <b>'im</b> around.",
+                "query_alt": "We just turned it around.",
+                "parameter_name": "Using [him / 'im] instead of [she / it] (object)"
+            },
+            "7": {
+                "query_dialect": "<b>Me and Michelle</b> will come too.",
+                "query_alt": "Michelle and I will come too.",
+                "parameter_name": "[Me] instead of [I] in coordinate subjects"
+            },
+            "8": {
+                "query_dialect": "My husband and <b>myself</b> were late.",
+                "query_alt": "My husband and I were late.",
+                "parameter_name": "[Myself / meself] instead of [I] in coordinate subjects."
+            },
+            "9": {
+                "query_dialect": "I have to get <b>me</b> one of those!",
+                "query_alt": "I have to get one of those!",
+                "parameter_name": "Benefactive / personal dative construction"
+            },
+            "10": {
+                "query_dialect": "Susan is a nurse but <b>he</b> does not like to put drips on patients.",
+                "query_alt": "Susan is a nurse but she does not like to put drips on patients.",
+                "parameter_name": "No gender distinction in third person singular"
+            },
+            "11": {
+                "query_dialect": "He hurt <b>hisself</b>.",
+                "query_alt": "He hurt himself.",
+                "parameter_name": "Subject pronoun forms serving as base for reflexives (hisself)"
+            },
+            "12": {
+                "query_dialect": "I'll do it <b>meself</b>.",
+                "query_alt": "I'll do it myself.",
+                "parameter_name": "Object pronoun forms serving as base for first and/or second person reflexives"
+            },
+            "13": {
+                "query_dialect": "They look after <b>theyselves</b>.",
+                "query_alt": "They look after themselves.",
+                "parameter_name": "Subject pronoun forms serving as base for reflexives (theyselves)"
+            },
+            "14": {
+                "query_dialect": "We cannot change <b>ourself</b>.",
+                "query_alt": "We cannot change ourselves.",
+                "parameter_name": "No number distinction in reflexives"
+            },
+            "15": {
+                "query_dialect": "and <b>himself</b> and the bull were tuggin' and wrestlin'",
+                "query_alt": "and he and the bull were tuggin' and wrestlin'",
+                "parameter_name": "Absolute use of reflexives"
+            },
+            "16": {
+                "query_dialect": "They brought it by their <b>own</b> self.",
+                "query_alt": "They brought it by themselves.",
+                "parameter_name": "Emphatic reflexives with own"
+            },
+            "17": {
+                "query_dialect": "Da aysbaks <b>fu</b> i",
+                "query_alt": "This ice box is his",
+                "parameter_name": "Creation of possessive pronouns with prefix [fi-] + personal pronoun"
+            },
+            "18": {
+                "query_dialect": "<b>I</b> book",
+                "query_alt": "my book",
+                "parameter_name": "Subject pronoun forms as (modifying) possessive pronouns: first person singular"
+            },
+            "19": {
+                "query_dialect": "<b>we</b> farm",
+                "query_alt": "our farm",
+                "parameter_name": "Subject pronoun forms as (modifying) possessive pronouns: first person plural"
+            },
+            "20": {
+                "query_dialect": "<b>he</b> book",
+                "query_alt": "his book",
+                "parameter_name": "Subject pronoun forms as (modifying) possessive pronouns: third person singular"
+            },
+            "21": {
+                "query_dialect": "<b>they</b> book",
+                "query_alt": "their book",
+                "parameter_name": "Subject pronoun forms as (modifying) possessive pronouns: third person plural"
+            },
+            "22": {
+                "query_dialect": "<b>you</b> book",
+                "query_alt": "your book",
+                "parameter_name": "[You] as (modifying) possessive pronoun"
+            },
+            "23": {
+                "query_dialect": "Where are <b>y'all's</b> books?",
+                "query_alt": "Where are your books?",
+                "parameter_name": "Second person pronoun forms other than [you] as (modifying) possessive pronoun"
+            },
+            "24": {
+                "query_dialect": "<b>him</b> book",
+                "query_alt": "his book",
+                "parameter_name": "Object pronoun forms as (modifying) possessive pronouns: third person singular"
+            },
+            "25": {
+                "query_dialect": "<b>them</b> book",
+                "query_alt": "their book",
+                "parameter_name": "Object pronoun forms as (modifying) possessive pronouns: third person plural"
+            },
+            "26": {
+                "query_dialect": "<b>me</b> book",
+                "query_alt": "my book",
+                "parameter_name": "Object pronoun forms as (modifying) possessive pronouns: first person singular"
+            },
+            "27": {
+                "query_dialect": "<b>us</b> book",
+                "query_alt": "our book",
+                "parameter_name": "Object pronoun forms as (modifying) possessive pronouns: first person plural"
+            },
+            "28": {
+                "query_dialect": "<b>Us kids</b> used to do that a lot",
+                "query_alt": "We used to do that a lot.",
+                "parameter_name": "Use of [us] + NP in subject function"
+            },
+            "29": {
+                "query_dialect": "Show <b>us</b> the town!",
+                "query_alt": "Show me the town!",
+                "parameter_name": "Use of us in object function with singular referent"
+            },
+            "30": {
+                "query_dialect": "Do you want to come with <b>we</b>?",
+                "query_alt": "Do you want to come with us?",
+                "parameter_name": "Non-coordinated subject pronoun forms in object function"
+            },
+            "31": {
+                "query_dialect": "<b>Them</b> can ride all day.",
+                "query_alt": "They can ride all day.",
+                "parameter_name": "Non-coordinated object pronoun forms in subject function"
+            },
+            "32": {
+                "query_dialect": "<b>Thass</b> nice. I like it.",
+                "query_alt": "It's nice. I like it.",
+                "parameter_name": "Distinction between emphatic vs. non-emphatic forms of pronouns"
+            },
+            "33": {
+                "query_dialect": "hern, hisn, ourn; hersn, oursn, ourns",
+                "query_alt": "her, his, our; hers, ours, ours",
+                "parameter_name": "Independent possessive pronoun forms with added nasal"
+            },
+            "34": {
+                "query_dialect": "youse; yʼall; aayʼ; yufela; you ... together; all of you; you ones/ʼuns; you guys; you people",
+                "query_alt": "you",
+                "parameter_name": "Forms or phrases for the second person plural pronoun other than [you]"
+            },
+            "35": {
+                "query_dialect": "Sure it's no good to <b>ye</b> in England.",
+                "query_alt": "Sure it's no good to you in England.",
+                "parameter_name": "Forms or phrases for the second person singular pronoun other than [you]"
+            },
+            "36": {
+                "query_dialect": "Longa picture you know <b>wila'</b> bin go",
+                "query_alt": "at the film to which you know we – including you – went'",
+                "parameter_name": "Distinct forms for inclusive/exclusive first person non-singular"
+            },
+            "37": {
+                "query_dialect": "hem (1 person), tufala (2 people), trifala (3 people), ol(geta) (4+ people)",
+                "query_alt": "him (1 person), them (2 people), them (3 people), them (4+ people)",
+                "parameter_name": "More number distinctions in personal pronouns than simply singular vs. plural"
+            },
+            "38": {
+                "query_dialect": "you guys",
+                "query_alt": "you",
+                "parameter_name": "Specialized plural markers for pronouns"
+            },
+            "39": {
+                "query_dialect": "<b>Who-all</b> came?",
+                "query_alt": "Who came?",
+                "parameter_name": "Plural forms of interrogative pronouns: using additional elements"
+            },
+            "40": {
+                "query_dialect": "<b>Who-who's</b> coming today?",
+                "query_alt": "Who's coming today?",
+                "parameter_name": "Plural forms of interrogative pronouns: reduplication"
+            },
+            "41": {
+                "query_dialect": "Things have become more expensive than <b>it</b> used to be.",
+                "query_alt": "Things have become more expensive than they used to be.",
+                "parameter_name": "Singular [it] instead of plural [they] in anaphoric use"
+            },
+            "42": {
+                "query_dialect": "I got from the store.",
+                "query_alt": "I got <b>it</b> from the store.",
+                "parameter_name": "Object pronoun drop"
+            },
+            "43": {
+                "query_dialect": "When I come back from my work just travel back to my home.",
+                "query_alt": "When I come back from my work <b>I</b> just travel back to my home.",
+                "parameter_name": "Subject pronoun drop: referential pronouns"
+            },
+            "44": {
+                "query_dialect": "Must be getting late.",
+                "query_alt": "<b>It</b> must be getting late.",
+                "parameter_name": "Subject pronoun drop: dummy pronouns"
+            },
+            "45": {
+                "query_dialect": "As I explained <b>it</b> to her, this is not the right way.",
+                "query_alt": "As I explained to her, this is not the right way.",
+                "parameter_name": "Insertion of [it] where StE favours zero"
+            },
+            "46": {
+                "query_dialect": "Is very nice food.",
+                "query_alt": "<b>It</b> is very nice food.",
+                "parameter_name": "Deletion of [it] in referential \"it is\" constructions"
+            },
+            "47": {
+                "query_dialect": "okay, <b>is</b> time for lunch.",
+                "query_alt": "okay, it's time for lunch.",
+                "parameter_name": "Deletion of [it] in non-referential \"it is\" constructions"
+            },
+            "48": {
+                "query_dialect": "We saw <b>sheeps</b> and <b>oxens</b>.",
+                "query_alt": "We saw sheep and oxen.",
+                "parameter_name": "Regularization of plural formation: extension of -s to StE irregular plurals"
+            },
+            "49": {
+                "query_dialect": "wifes, knifes, lifes, leafs",
+                "query_alt": "wives, knives, lives, leaves",
+                "parameter_name": "Regularization of plural formation: phonological regularization"
+            },
+            "50": {
+                "query_dialect": "shooting <b>alla</b> bird",
+                "query_alt": "shooting birds",
+                "parameter_name": "Plural marking via preposed elements"
+            },
+            "51": {
+                "query_dialect": "Da boy <b>dem</b>",
+                "query_alt": "The boys",
+                "parameter_name": "Plural marking via postposed elements"
+            },
+            "52": {
+                "query_dialect": "Doug and <b>them</b> are coming down in December.",
+                "query_alt": "Doug and his family are coming down in December.",
+                "parameter_name": "Associative plural marked by postposed and [them / them all / dem]"
+            },
+            "53": {
+                "query_dialect": "my Daddy <b>gang</b>",
+                "query_alt": "my Dad and his friends",
+                "parameter_name": "Associative plural marked by other elements"
+            },
+            "54": {
+                "query_dialect": "Neither of my two <b>sister-in-laws</b> speak to me much.",
+                "query_alt": "Neither of my two sisters in law speak to me much.",
+                "parameter_name": "Group plurals"
+            },
+            "55": {
+                "query_dialect": "furnitures, machineries, equipments, evidences, luggages, advices, mails, staffs",
+                "query_alt": "furniture, machinery, equipment, evidence, luggage, advice, mail, staff",
+                "parameter_name": "Different count/mass noun distinctions resulting in use of plural for StE singular"
+            },
+            "56": {
+                "query_dialect": "It's only five <b>mile</b> away.",
+                "query_alt": "It's only five miles away.",
+                "parameter_name": "Absence of plural marking only after quantifiers"
+            },
+            "57": {
+                "query_dialect": "The three <b>girl</b> there don't want to talk to us.",
+                "query_alt": "The three girls there don't want to talk to us.",
+                "parameter_name": "Plural marking generally optional : for nouns with human referents"
+            },
+            "58": {
+                "query_dialect": "Some <b>apartment</b> are bigger.",
+                "query_alt": "Some apartments are bigger.",
+                "parameter_name": "Plural marking generally optional: for nouns with non-human referents"
+            },
+            "59": {
+                "query_dialect": "<b>This our</b> common problem is very serious.",
+                "query_alt": "This common problem of ours is very serious.",
+                "parameter_name": "Double determiners"
+            },
+            "60": {
+                "query_dialect": "She's got <b>the</b> toothache",
+                "query_alt": "She's got a toothache.",
+                "parameter_name": "Use of definite article where StE has indefinite article"
+            },
+            "61": {
+                "query_dialect": "<b>A</b> moon was very bright last night.",
+                "query_alt": "The moon was very bright last night.",
+                "parameter_name": "Use of indefinite article where StE has definite article"
+            },
+            "62": {
+                "query_dialect": "He's in office.",
+                "query_alt": "He's in <b>the</b> office.",
+                "parameter_name": "Use of zero article where StE has definite article"
+            },
+            "63": {
+                "query_dialect": "Can I get better grade?",
+                "query_alt": "Can I get <b>a</b> better grade?",
+                "parameter_name": "Use of zero article where StE has indefinite article"
+            },
+            "64": {
+                "query_dialect": "I stayed on until <b>the</b> Christmas.",
+                "query_alt": "I stayed on until Christmas.",
+                "parameter_name": "Use of definite article where StE favours zero"
+            },
+            "65": {
+                "query_dialect": "We received <b>a</b> good news at last.",
+                "query_alt": "We received good news at last.",
+                "parameter_name": "Use of indefinite article where StE favours zero"
+            },
+            "66": {
+                "query_dialect": "What happened? Oh, <b>one</b> dog bit me.",
+                "query_alt": "What happened? Oh, a dog bit me.",
+                "parameter_name": "Indefinite article [one / wan]"
+            },
+            "67": {
+                "query_dialect": "They have two children. <b>That</b> elder girl is 19 years old.",
+                "query_alt": "They have two children. The elder girl is 19 years old.",
+                "parameter_name": "Demonstratives for definite articles"
+            },
+            "68": {
+                "query_dialect": "I don't have any of <b>them</b> qualifications.",
+                "query_alt": "I don't have any of those qualifications.",
+                "parameter_name": "[Them] instead of demonstrative [those]"
+            },
+            "69": {
+                "query_dialect": "Look <b>yonder</b>!",
+                "query_alt": "Look over there!",
+                "parameter_name": "[Yon / yonder] indicating remoteness"
+            },
+            "70": {
+                "query_dialect": "this <b>here</b> book / them <b>there</b> books",
+                "query_alt": "this book that is right here / those books that are over there",
+                "parameter_name": "Proximal and distal demonstratives with [here] and [there]"
+            },
+            "71": {
+                "query_dialect": "<b>This</b> books are useful for my study.",
+                "query_alt": "These books are useful for my study.",
+                "parameter_name": "No number distinction in demonstratives"
+            },
+            "72": {
+                "query_dialect": "The woman next door's bin fell over.",
+                "query_alt": "The woman who lives next door had her bin fall over.",
+                "parameter_name": "Group genitives"
+            },
+            "73": {
+                "query_dialect": "Son is there.",
+                "query_alt": "I have a son.",
+                "parameter_name": "Existential construction to express possessive"
+            },
+            "74": {
+                "query_dialect": "This is the house for my mother.",
+                "query_alt": "This is my mother's house.",
+                "parameter_name": "Phrases with [for] + noun to express possession: for-phrase following possessed NP"
+            },
+            "75": {
+                "query_dialect": "Long time he was for my <b>sister</b> husband.",
+                "query_alt": "Long time ago he was my sister's husband.",
+                "parameter_name": "Phrases with [for] + noun to express possession: for-phrase preceding possessed NP"
+            },
+            "76": {
+                "query_dialect": "woman belong friend",
+                "query_alt": "the woman's friend",
+                "parameter_name": "Postnominal phrases with [belong / bilong / blong / long / blo] to express possession"
+            },
+            "77": {
+                "query_dialect": "my cousin bike",
+                "query_alt": "my cousin's bike",
+                "parameter_name": "Omission of genitive suffix; possession expressed through bare juxtaposition of nouns"
+            },
+            "78": {
+                "query_dialect": "That is so much more easier to follow.",
+                "query_alt": "That is so much easier to follow.",
+                "parameter_name": "Double comparatives and superlatives"
+            },
+            "79": {
+                "query_dialect": "He is the regularest guy I know.",
+                "query_alt": "He is the most regular guy I know.",
+                "parameter_name": "Regularized comparison strategies: extension of synthetic marking"
+            },
+            "80": {
+                "query_dialect": "one of the most pretty sunsets",
+                "query_alt": "one of the prettiest sunsets",
+                "parameter_name": "Regularized comparison strategies: extension of analytic marking"
+            },
+            "81": {
+                "query_dialect": "The situation is much serious than I thought.",
+                "query_alt": "The situation is more serious than I thought.",
+                "parameter_name": "[Much] as comparative marker"
+            },
+            "82": {
+                "query_dialect": "She is bigger as her sister.",
+                "query_alt": "She is bigger than her sister.",
+                "parameter_name": "[As / to] as comparative markers"
+            },
+            "84": {
+                "query_dialect": "They like football than basketball.",
+                "query_alt": "They like football more than basketball.",
+                "parameter_name": "Comparative marking only with [than]"
+            },
+            "85": {
+                "query_dialect": "He has more clothes and all of us.",
+                "query_alt": "He has more clothes than all of us.",
+                "parameter_name": "Comparative marking with [more / and]"
+            },
+            "86": {
+                "query_dialect": "He is one of the radical students that you can ever find.",
+                "query_alt": "He is one of the most radical students that you can ever find.",
+                "parameter_name": "Zero marking of degree"
+            },
+            "87": {
+                "query_dialect": "A fish big and fresh is my favorite.",
+                "query_alt": "A big and fresh fish is my favorite.",
+                "parameter_name": "Attributive adjectival modifiers follow head noun"
+            },
+            "88": {
+                "query_dialect": "I am liking her hair style.",
+                "query_alt": "I like her hair style right now.",
+                "parameter_name": "Wider range of uses of progressive [be] + V-ing than in StE: extension to stative verbs"
+            },
+            "89": {
+                "query_dialect": "They're going for a run every morning.",
+                "query_alt": "They normally go for a run every morning.",
+                "parameter_name": "Wider range of uses of progressive [be] + V-ing than in StE: extension to habitual contexts"
+            },
+            "90": {
+                "query_dialect": "He be sick.",
+                "query_alt": "He is always sick.",
+                "parameter_name": "Invariant [be] as habitual marker"
+            },
+            "91": {
+                "query_dialect": "They do put up with it.",
+                "query_alt": "They usually put up with it.",
+                "parameter_name": "[Do] as habitual marker"
+            },
+            "92": {
+                "query_dialect":  "I drinks three cups before work.",
+                "query_alt": "I usually drink three cups before work.",
+                "parameter_name": "Other non-standard habitual markers: synthetic"
+            },
+            "93": {
+                "query_dialect": "one of the hymns been usa sing",
+                "query_alt": "one of the hymns that are usually sung",
+                "parameter_name": "Other non-standard habitual markers: analytic"
+            },
+            "95": {
+                "query_dialect": "He was stood on the corner.",
+                "query_alt": "He was standing on the corner.",
+                "parameter_name": "[Be sat / stood] with progressive meaning"
+            },
+            "96": {
+                "query_dialect": "There is a car broken down on the road.",
+                "query_alt": "There is a car that broke down on the road.",
+                "parameter_name": "[There] with past participle in resultative contexts"
+            },
+            "97": {
+                "query_dialect": "He has a letter written.",
+                "query_alt": "He has written a letter.",
+                "parameter_name": "Medial object perfect"
+            },
+            "98": {
+                "query_dialect": "She's after selling the boat.",
+                "query_alt": "She has just sold the boat.",
+                "parameter_name": "After-perfect"
+            },
+            "99": {
+                "query_dialect": "I ate the food. So can I go now?",
+                "query_alt": "I've eaten the food. So can I go now?",
+                "parameter_name": "Levelling of the difference between present perfect and simple past: simple past for StE present perfect"
+            },
+            "100": {
+                "query_dialect": "We've been there last year.",
+                "query_alt": "We were there last year.",
+                "parameter_name": "Levelling of the difference between present perfect and simple past: present perfect for StE simple past"
+            },
+            "101": {
+                "query_dialect": "I know her since she was a child.",
+                "query_alt": "I've known her since she was a child.",
+                "parameter_name": "Simple present for continuative or experiential perfect"
+            },
+            "102": {
+                "query_dialect": "They're not left school yet.",
+                "query_alt": "They haven't left school yet.",
+                "parameter_name": "[Be] as perfect auxiliary"
+            },
+            "103": {
+                "query_dialect": "I did know some things weren't right.",
+                "query_alt": "I knew some things weren't right.",
+                "parameter_name": "[Do] as unstressed tense marker"
+            },
+            "104": {
+                "query_dialect": "Sharon done read the whole book.",
+                "query_alt": "Sharon has read the whole book.",
+                "parameter_name": "Completive/perfect [done]"
+            },
+            "105": {
+                "query_dialect": "He has done talked about me.",
+                "query_alt": "He has talked about me.",
+                "parameter_name": "Completive/perfect [have / be] + [done] + past participle"
+            },
+            "106": {
+                "query_dialect": "If you love your enemies, they be done eat you alive in this society.",
+                "query_alt": "If you love your enemies, they will eat you alive in this society.",
+                "parameter_name": "Sequential or irrealis [be done]"
+            },
+            "108": {
+                "query_dialect": "I ever see the movie.",
+                "query_alt": "I have seen the movie.",
+                "parameter_name": "[Ever] as marker of experiential perfect"
+            },
+            "109": {
+                "query_dialect": "Did you eat already?",
+                "query_alt": "Have you eaten lunch?",
+                "parameter_name": "Perfect marker [already]"
+            },
+            "110": {
+                "query_dialect": "I finish eat.",
+                "query_alt": "I have eaten.",
+                "parameter_name": "Finish-derived completive markers"
+            },
+            "111": {
+                "query_dialect": "I been told you.",
+                "query_alt": "I told you.",
+                "parameter_name": "Past tense/anterior marker [been]"
+            },
+            "112": {
+                "query_dialect": "We had catch the fish when the big wave hit.",
+                "query_alt": "We had caught the fish when the big wave hit.",
+                "parameter_name": "Anterior [had] + bare root"
+            },
+            "113": {
+                "query_dialect": "I noticed the van I came in.",
+                "query_alt": "I noticed the van I had come in",
+                "parameter_name": "Loosening of sequence of tenses rule"
+            },
+            "114": {
+                "query_dialect": "He gon' come with us.",
+                "query_alt": "He will come with us.",
+                "parameter_name": "Go-based future markers"
+            },
+            "115": {
+                "query_dialect": "You waan go.",
+                "query_alt": "You want to go.",
+                "parameter_name": "Volition-based future markers other than will"
+            },
+            "116": {
+                "query_dialect": "I am coming to cook your meal.",
+                "query_alt": "I am about to cook your meal.",
+                "parameter_name": "Come-based future/ingressive markers"
+            },
+            "117": {
+                "query_dialect": "Next week, I leaving the States, I going to Liberia.",
+                "query_alt": "Next week, I will be leaving the States and going to Liberia.",
+                "parameter_name": "Present tense forms for neutral future reference"
+            },
+            "118": {
+                "query_dialect": "I's going to town.",
+                "query_alt": "I am going to town.",
+                "parameter_name": "[Is] instead of [am / will] with 1st person singular"
+            },
+            "119": {
+                "query_dialect": "I would meet him tomorrow.",
+                "query_alt": "I will meet him tomorrow.",
+                "parameter_name": "[Would] for (distant) future in contrast to [will] (immediate future)"
+            },
+            "120": {
+                "query_dialect": "If I <b>would be you</b> I would go home now.",
+                "query_alt": "If I were you I would go home now.",
+                "parameter_name": "[Would] in if-clauses"
+            },
+            "121": {
+                "query_dialect": "We might could do that.",
+                "query_alt": "We could do that.",
+                "parameter_name": "Double modals"
+            },
+            "122": {
+                "query_dialect": "This mustn't be true.",
+                "query_alt": "This can't be true.",
+                "parameter_name": "Epistemic [mustn't]"
+            },
+            "123": {
+                "query_dialect": "I wish I can get the job.",
+                "query_alt": "I wish I could get the job.",
+                "parameter_name": "Present tense forms of modals used where StE has past tense forms"
+            },
+            "124": {
+                "query_dialect": "The car needs washed.",
+                "query_alt": "It is time to wash the car.",
+                "parameter_name": "[Want / need] + past participle"
+            },
+            "125": {
+                "query_dialect": "We liketa drowned that day.",
+                "query_alt": "We almost drowned that day.",
+                "parameter_name": "New quasi-modals: core modal meanings"
+            },
+            "126": {
+                "query_dialect": "They're [fixin to / finna] leave town.",
+                "query_alt": "They're about to leave.",
+                "parameter_name": "New quasi-modals: aspectual meanings"
+            },
+            "127": {
+                "query_dialect": "This furniture may be removed tomorrow.",
+                "query_alt": "This furniture should be removed tomorrow.",
+                "parameter_name": "Non-standard use of modals for politeness reasons"
+            },
+            "128": {
+                "query_dialect": "He catched the ball.",
+                "query_alt": "He caught the ball.",
+                "parameter_name": "Levelling of past tense/past participle verb forms: regularization of irregular verb paradigms"
+            },
+            "129": {
+                "query_dialect": "They come and joined us.",
+                "query_alt": "They came and joined us.",
+                "parameter_name": "Levelling of past tense/past participle verb forms: unmarked forms"
+            },
+            "130": {
+                "query_dialect": "He had went.",
+                "query_alt": "He had gone.",
+                "parameter_name": "Levelling of past tense/past participle verb forms: past tense replacing the past participle"
+            },
+            "131": {
+                "query_dialect": "I seen it.",
+                "query_alt": "I saw it.",
+                "parameter_name": "Levelling of past tense/past participle verb forms: past participle replacing the past tense form"
+            },
+            "132": {
+                "query_dialect": "Here are things you order yesterday.",
+                "query_alt": "Here are things you ordered yesterday.",
+                "parameter_name": "Zero past tense forms of regular verbs"
+            },
+            "133": {
+                "query_dialect": "They didn't made it this time.",
+                "query_alt": "They didn't make it this time.",
+                "parameter_name": "Double marking of past tense"
+            },
+            "134": {
+                "query_dialect": "Where are you a-goin?",
+                "query_alt": "Where are you going?",
+                "parameter_name": "A-prefixing on ing-forms"
+            },
+            "135": {
+                "query_dialect": "You've a-killed your mother.",
+                "query_alt": "You've killed your mother.",
+                "parameter_name": "A-prefixing on elements other than ing-forms"
+            },
+            "136": {
+                "query_dialect": "Some of 'em have a pad insole; some of 'em be's leather.",
+                "query_alt": "Some of 'em have a pad insole; some of 'em are leather.",
+                "parameter_name": "Special inflected form of be in present subjunctive"
+            },
+            "137": {
+                "query_dialect": "I junt",
+                "query_alt": "I don't",
+                "parameter_name": "Special inflected forms of [do]"
+            },
+            "138": {
+                "query_dialect": "he amn’t",
+                "query_alt": "he hasn't",
+                "parameter_name": "Special inflected forms of [have]"
+            },
+            "139": {
+                "query_dialect": "She <b>done</b> it, didn't she?",
+                "query_alt": "She did it, didn't she?",
+                "parameter_name": "Distinctive forms for auxiliary vs. full verb meanings of primary verbs"
+            },
+            "140": {
+                "query_dialect": "Evry day da fishing day.",
+                "query_alt": "Every day is a day for fishing.",
+                "parameter_name": "Other forms/phrases for copula [be]: before NPs"
+            },
+            "142": {
+                "query_dialect": "But still we 's hard up.",
+                "query_alt": "But still we are hard up.",
+                "parameter_name": "Other forms/phrases for copula [be]: before AdjPs"
+            },
+            "143": {
+                "query_dialect": "You can see 'im fish.",
+                "query_alt": "You can see the fish.",
+                "parameter_name": "Transitive verb suffix -em/-im/-um"
+            },
+            "144": {
+                "query_dialect": "They've gotten interested.",
+                "query_alt": "They've developed an interest.",
+                "parameter_name": "Use of [gotten] and [got] with distinct meanings (dynamic vs. static)"
+            },
+            "145": {
+                "query_dialect": "I hope you've gotten your topic already.",
+                "query_alt": "I hope you've got your topic already.",
+                "parameter_name": "Use of [gotten] instead of [got]"
+            },
+            "146": {
+                "query_dialect": "I can driving now.",
+                "query_alt": "I can drive now.",
+                "parameter_name": "Use of verbal suffix -ing with forms other than present participle/gerund"
+            },
+            "147": {
+                "query_dialect": "If I was you",
+                "query_alt": "If I were you",
+                "parameter_name": "[Was] for conditional [were]"
+            },
+            "148": {
+                "query_dialect": "I buy rice give you.",
+                "query_alt": "I bought rice for you.",
+                "parameter_name": "Serial verbs: [give] instead of [to / for]"
+            },
+            "149": {
+                "query_dialect": "Grandfather send us go school.",
+                "query_alt": "Grandfather sends us to school.",
+                "parameter_name": "Serial verbs: [go] to mean movement away from"
+            },
+            "150": {
+                "query_dialect": "Take the book bring come.",
+                "query_alt": "Bring the book here.",
+                "parameter_name": "Serial verbs: [come] to mean movement towards"
+            },
+            "151": {
+                "query_dialect": "All the man. I wanna go see'em.",
+                "query_alt": "I intend to go and see the men",
+                "parameter_name": "Serial verbs: constructions with 3 verbs"
+            },
+            "153": {
+                "query_dialect": "John give his boss scold.",
+                "query_alt": "John was scolded by his boss",
+                "parameter_name": "[Give] passive: NP1 (patient) + [give] + NP2 (agent) + V"
+            },
+            "154": {
+                "query_dialect": "I don't want no help.",
+                "query_alt": "I don't want any help.",
+                "parameter_name": "Multiple negation / negative concord"
+            },
+            "155": {
+                "query_dialect": "That ain't fair.",
+                "query_alt": "That isn't fair.",
+                "parameter_name": "[Ain't] as the negated form of [be]"
+            },
+            "156": {
+                "query_dialect": "I ain't seen them yet.",
+                "query_alt": "I hadn't seen them yet.",
+                "parameter_name": "[Ain't] as the negated form of [have]"
+            },
+            "157": {
+                "query_dialect": "something I ain't know about",
+                "query_alt": "something I didn't know about",
+                "parameter_name": "[Ain't] as generic negator before a main verb"
+            },
+            "158": {
+                "query_dialect": "He don't always tell the truth.",
+                "query_alt": "He doesn't always tell the truth.",
+                "parameter_name": "Invariant [don't] for all persons in the present tense"
+            },
+            "159": {
+                "query_dialect": "He never came.",
+                "query_alt": "He didn't come.",
+                "parameter_name": "[Never] as preverbal past tense negator"
+            },
+            "160": {
+                "query_dialect": "I no want any job or anything.",
+                "query_alt": "I don't want any job or anything.",
+                "parameter_name": "[No] as preverbal negator"
+            },
+            "161": {
+                "query_dialect": "The baby not ate food and cried a lot.",
+                "query_alt": "The baby didn't eat food and cried a lot.",
+                "parameter_name": "[Not] as a preverbal negator"
+            },
+            "162": {
+                "query_dialect": "No more food in the refrigerator.",
+                "query_alt": "There is not any food in the refrigerator.",
+                "parameter_name": "[No more / nomo] as negative existential marker"
+            },
+            "163": {
+                "query_dialect": "John was there, but Mike weren't",
+                "query_alt": "John was there, but Mike wasn't",
+                "parameter_name": "[Was / weren't] split"
+            },
+            "164": {
+                "query_dialect": "I am older than you, amn't I?",
+                "query_alt": "I believe I am older than you. Is that correct?",
+                "parameter_name": "[Amn't] in tag questions"
+            },
+            "165": {
+                "query_dialect": "You are ill, isn't it?",
+                "query_alt": "I believe you are ill. Is that correct?",
+                "parameter_name": "Invariant non-concord tags"
+            },
+            "166": {
+                "query_dialect": "I want to go home, can or not?",
+                "query_alt": "Can I go home?",
+                "parameter_name": "Invariant tag [can or not?]"
+            },
+            "167": {
+                "query_dialect": "Isn't, I can go there now?",
+                "query_alt": "I can go there now can't I?",
+                "parameter_name": "Fronted invariant tag"
+            },
+            "168": {
+                "query_dialect": "Dunna tull stolly.",
+                "query_alt": "Don't lie.",
+                "parameter_name": "Special negative verbs in imperatives"
+            },
+            "169": {
+                "query_dialect": "Isn't he arriving tomorrow?. [No, he is / Yes, he isn't.]",
+                "query_alt": "Isn't he arriving tomorrow?. [Yes, he is / No, he isn't.]",
+                "parameter_name": "Non-standard system underlying responses to negative yes/no questions"
+            },
+            "170": {
+                "query_dialect": "He speak English.",
+                "query_alt": "He speaks English.",
+                "parameter_name": "Invariant present tense forms due to zero marking for the third person singular"
+            },
+            "171": {
+                "query_dialect": "Every Sunday we goes to church.",
+                "query_alt": "Every Sunday we go to church.",
+                "parameter_name": "Invariant present tense forms due to generalization of 3rd person [s] to all persons"
+            },
+            "172": {
+                "query_dialect": "There's two men waiting in the hall.",
+                "query_alt": "There are two men waiting in the hall.",
+                "parameter_name": "Existential / presentational [there's/ there is / there was] with plural subjects"
+            },
+            "173": {
+                "query_dialect": "It's some milk in the fridge.",
+                "query_alt": "There's some milk in the fridge.",
+                "parameter_name": "Variant forms of dummy subject there in existential clauses"
+            },
+            "174": {
+                "query_dialect": "You always thinking about it.",
+                "query_alt": "You are always thinking about it.",
+                "parameter_name": "Deletion of auxiliary [be]: before progressive"
+            },
+            "175": {
+                "query_dialect": "He gonna go home and watch TV.",
+                "query_alt": "He is gonna go home and watch TV.",
+                "parameter_name": "Deletion of auxiliary [be]: before gonna"
+            },
+            "176": {
+                "query_dialect": "He a good teacher.",
+                "query_alt": "He is a good teacher.",
+                "parameter_name": "Deletion of copula [be]: before NPs"
+            },
+            "177": {
+                "query_dialect": "She smart.",
+                "query_alt": "She is smart.",
+                "parameter_name": "Deletion of copula [be]: before AdjPs"
+            },
+            "178": {
+                "query_dialect": "She at home.",
+                "query_alt": "She is at home.",
+                "parameter_name": "Deletion of copula [be]: before locatives"
+            },
+            "179": {
+                "query_dialect": "I seen it before.",
+                "query_alt": "I have seen it before.",
+                "parameter_name": "Deletion of auxiliary [have]"
+            },
+            "180": {
+                "query_dialect": "You was hungry but he was thirsty. OR: You were hungry but he were thirsty.",
+                "query_alt": "You were hungry but he was thirsty.",
+                "parameter_name": "[Was / were] generalization"
+            },
+            "181": {
+                "query_dialect": "they sing, birds sings",
+                "query_alt": "they sing, birds sing",
+                "parameter_name": "Agreement sensitive to subject type"
+            },
+            "182": {
+                "query_dialect": "I sing and dances",
+                "query_alt": "I sing and dance",
+                "parameter_name": "Agreement sensitive to position of subject"
+            },
+            "183": {
+                "query_dialect": "birds sings, they sing, I sing and dances",
+                "query_alt": "birds sing, they sing, I sing and dance",
+                "parameter_name": "Northern Subject Rule"
+            },
+            "184": {
+                "query_dialect": "Here I be. I be cold.",
+                "query_alt": "Here I am. I am cold.",
+                "parameter_name": "Invariant be with non-habitual function"
+            },
+            "185": {
+                "query_dialect": "I know a man that'll help you. OR: I know a man what'll help you.",
+                "query_alt": "I know a man who will help you.",
+                "parameter_name": "Relativizer [that] or [what] in non-restrictive contexts"
+            },
+            "186": {
+                "query_dialect": "He's the man which looks after the cows.",
+                "query_alt": "He's the man who looks after the cows.",
+                "parameter_name": "[Which] instead of [who]"
+            },
+            "187": {
+                "query_dialect": "The man as was just here.",
+                "query_alt": "The man who was just here.",
+                "parameter_name": "Relativizer [as]"
+            },
+            "188": {
+                "query_dialect": "This is the man at painted my house.",
+                "query_alt": "This is the man who painted my house.",
+                "parameter_name": "Relativizer [at]"
+            },
+            "189": {
+                "query_dialect": "My father was one o de founders o' de Underground Railroad where help de slaves to run way to de North.",
+                "query_alt": "My father was one of the founders of the Underground Railroad, which helped the slaves to run away to the North",
+                "parameter_name": "Relativizer [where] or a form derived from [where]"        
+            },
+            "190": {
+                "query_dialect": "This is the man what painted my house.",
+                "query_alt": "This is the man who painted my house.",
+                "parameter_name": "Relativizer [what] or a form derived from [what]"
+            },
+            "191": {
+                "query_dialect": "But these, these little fellahs that which had stayed befo'",
+                "query_alt": "But these, these little fellahs who had stayed before",
+                "parameter_name": "Relativizer doubling"
+            },
+            "192": {
+                "query_dialect": "This is the man that his wife has died. OR: This is the man what his wife has died.",
+                "query_alt": "This is the man whose wife has died.",
+                "parameter_name": "Use of analytic or cliticized [that his / that's / what his / what's / at's / who his] instead of [whose]"
+            },
+            "193": {
+                "query_dialect": "The man lives there is friendly.",
+                "query_alt": "The man who lives there is friendly.",
+                "parameter_name": "Gapping/zero-relativization in subject position"
+            },
+            "194": {
+                "query_dialect": "This is the house which I painted it yesterday.",
+                "query_alt": "This is the house which I painted it yesterday.",
+                "parameter_name": "Resumptive/shadow pronouns"
+            },
+            "195": {
+                "query_dialect": "The cake John buy one always very nice to eat.",
+                "query_alt": "The cake that John buys is always very nice to eat.",
+                "parameter_name": "Postposed one as sole relativizer"
+            },
+            "196": {
+                "query_dialect": "The one I made, that one is good.",
+                "query_alt": "The ones I made are the good ones.",
+                "parameter_name": "Correlative constructions"
+            },
+            "197": {
+                "query_dialect": "unless you are going to get 88 which some universities are not going to give those marks",
+                "query_alt": "unless you are going to get 88, but some universities are not going to give those marks",
+                "parameter_name": "Linking relative clauses"
+            },
+            "198": {
+                "query_dialect": "You remember the swing that we all used to sit together?",
+                "query_alt": "You remember the swing that we all used to sit together on?",
+                "parameter_name": "Deletion of stranded prepositions in relative clauses (preposition chopping)"
+            },
+            "199": {
+                "query_dialect": "There is nothing like Amma cooked food!",
+                "query_alt": "There is nothing like food cooked by Amma!",
+                "parameter_name": "Reduced relative phrases preceding head-noun"
+            },
+            "200": {
+                "query_dialect": "We hear say you gone to the city.",
+                "query_alt": "We hear that you were gone to the city.",
+                "parameter_name": "Say-based complementizers"
+            },
+            "201": {
+                "query_dialect": "You mean your mother allows you for bring over boyfriends?",
+                "query_alt": "You mean your mother allows you to bring over boyfriends?",
+                "parameter_name": "For-based complementizers"
+            },
+            "202": {
+                "query_dialect": "We always had gutters in the winter time for to drain the water away.",
+                "query_alt": "We always had gutters in the winter time to drain the water away.",
+                "parameter_name": "Unsplit [for to] in infinitival purpose clauses"
+            },
+            "203": {
+                "query_dialect": "He had the privilege for to turn on the lights. OR: He had the privilege for turn on the lights.",
+                "query_alt": "He had the privilege to turn on the lights.",
+                "parameter_name": "[For (to)] as infinitive marker"
+            },
+            "204": {
+                "query_dialect": "I'm taller than what he is.",
+                "query_alt": "I'm taller than he is.",
+                "parameter_name": "[As what / than what] in comparative clauses"
+            },
+            "205": {
+                "query_dialect": "Got no water in the toilet.",
+                "query_alt": "There's no water in the toilet.",
+                "parameter_name": "Existentials with forms of [get]"
+            },
+            "206": {
+                "query_dialect": "You have some people they don't give a damn about animals.",
+                "query_alt": "There are some people who don't give a damn about animals.",
+                "parameter_name": "Existentials with forms of [have]"
+            },
+            "207": {
+                "query_dialect": "He wanted that I should go with him.",
+                "query_alt": "He wanted me to go with him.",
+                "parameter_name": "Substitution of that-clause for infinitival subclause"
+            },
+            "208": {
+                "query_dialect": "They were allowed call her.",
+                "query_alt": "They were allowed to call her.",
+                "parameter_name": "Deletion of [to] before infinitives"
+            },
+            "209": {
+                "query_dialect": "He made me to do it.",
+                "query_alt": "He made me do it.",
+                "parameter_name": "Addition of [to] where StE has bare infinitive"
+            },
+            "210": {
+                "query_dialect": "When mistress started whoop her, she sat her down.",
+                "query_alt": "When mistress started whooping her, she sat her down.",
+                "parameter_name": "Non-finite clause complements with bare root form rather than -ing form"
+            },
+            "211": {
+                "query_dialect": "There's nothing wrong with this box, but.",
+                "query_alt": "There's nothing wrong with this box though.",
+                "parameter_name": "Clause-final [but] instead of [though]"
+            },
+            "212": {
+                "query_dialect": "I don't know what else she can do, but.",
+                "query_alt": "I don't know what else she can do, really.",
+                "parameter_name": "Clause-final [but] instead of [really]"
+            },
+            "213": {
+                "query_dialect": "Stay longer, they have to over-charge.",
+                "query_alt": "If you stay longer, they have to charge more.",
+                "parameter_name": "No subordination; chaining construction linking two main verbs (motion and activity)"
+            },
+            "214": {
+                "query_dialect": "Despite being instructed on what to do still yet he made some misakes.",
+                "query_alt": "Despite being instructed on what to do, he still made some misakes.",
+                "parameter_name": "Conjunction doubling: clause + conj. + conj. + clause"
+            },
+            "215": {
+                "query_dialect": "Although you are smart, but you are not appreciated",
+                "query_alt": "Although you are smart, you are not appreciated",
+                "parameter_name": "Conjunction doubling: correlative conj.s"
+            },
+            "216": {
+                "query_dialect": "I'm going town.",
+                "query_alt": "I'm going to town.",
+                "parameter_name": "Omission of StE prepositions"
+            },
+            "217": {
+                "query_dialect": "I was crying cause I bumped in.",
+                "query_alt": "I was crying because I had a collision.",
+                "parameter_name": "Use of postpositions"
+            },
+            "219": {
+                "query_dialect": "Only dark time they come around",
+                "query_alt": "They only come around in the dark",
+                "parameter_name": "Adverb-forming suffixes -way and -time"
+            },
+            "220": {
+                "query_dialect": "That's real nice and cold",
+                "query_alt": "That's really nice and cold",
+                "parameter_name": "Degree modifier adverbs have the same form as adjectives"
+            },
+            "221": {
+                "query_dialect": "She speaks so soft.",
+                "query_alt": "She speaks so softly.",
+                "parameter_name": "Other adverbs have the same form as adjectives"
+            },
+            "222": {
+                "query_dialect": "They are too nice. We had a good time there.",
+                "query_alt": "They are very nice. We had a good time there.",
+                "parameter_name": "[Too / too much / very much / very] as qualifier"
+            },
+            "223": {
+                "query_dialect": "It's looking for more land a lot of them are.",
+                "query_alt": "A lot of them are looking for more land.",
+                "parameter_name": "Other options for clefting than StE"
+            },
+            "224": {
+                "query_dialect": "To town every Saturday I drive.",
+                "query_alt": "I drive to town every Saturday.",
+                "parameter_name": "Other possibilities for fronting than StE"
+            },
+            "225": {
+                "query_dialect": "Dying to go to the toilet I am.",
+                "query_alt": "Dying to go to the toilet I am.",
+                "parameter_name": "Sentence-initial focus marker"
+            },
+            "226": {
+                "query_dialect": "Didn't nobody show up.",
+                "query_alt": "Nobody showed up.",
+                "parameter_name": "Negative inversion"
+            },
+            "227": {
+                "query_dialect": "I'm wondering what are you going to do.",
+                "query_alt": "I'm wondering what you are going to do.",
+                "parameter_name": "Inverted word order in indirect questions"
+            },
+            "228": {
+                "query_dialect": "When she coming?",
+                "query_alt": "When is she coming?",
+                "parameter_name": "No inversion/no auxiliaries in wh-questions"
+            },
+            "229": {
+                "query_dialect": "You get the point?",
+                "query_alt": "Do you get the point?",
+                "parameter_name": "No inversion/no auxiliaries in main clause yes/no questions"
+            },
+            "230": {
+                "query_dialect": "What who has eaten?",
+                "query_alt": "Who ate what?",
+                "parameter_name": "Doubly filled COMP-position with wh-words"
+            },
+            "231": {
+                "query_dialect": "The most thing I like is apples.",
+                "query_alt": "The thing I like most is apples.",
+                "parameter_name": "Superlative marker [most] occurring before head noun"
+            },
+            "232": {
+                "query_dialect": "She'd teach us it.",
+                "query_alt": "She would teach it to us.",
+                "parameter_name": "Either order of objects in double object constructions (if both objects are pronominal)"
+            },
+            "233": {
+                "query_dialect": "Come you here!",
+                "query_alt": "Come here!",
+                "parameter_name": "Presence of subject in imperatives"
+            },
+            "234": {
+                "query_dialect": "It was like really cheap.",
+                "query_alt": "It was really cheap.",
+                "parameter_name": "[Like] as a focussing device"
+            },
+            "235": {
+                "query_dialect": "And my friend was like \"No way!\"",
+                "query_alt": "And my friend said \"No way!\"",
+                "parameter_name": "[Like] as a quotative particle"
+            }
+        }
+    </script>
+
+  </body>
+</html>
