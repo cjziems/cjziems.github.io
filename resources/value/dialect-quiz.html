@@ -43,7 +43,6 @@
           margin-bottom: 30;
            margin-left:10;
            width: 100%;
-           min-width: 500px;
            border:2px #333333;
            background-color: #f2f2f2;
            border-style: solid;
@@ -57,43 +56,75 @@
         .output {
           margin-bottom: 30;
            margin-left:10;
-           width: 50%;
+           width: 35%;
            min-width: 500px;
            border:2px #333333;
            background-color: #f2f2f2;
            border-style: solid;
+           border-radius:15px;
            padding-right:10px;
            padding-left:10px;
            display:table;
-           border-radius:15px;
            margin: auto;
         }
 
         .center {
             margin: auto;
-            width: 40%;
+            width: 30%;
             padding: 10px;
         }
 
         .excerpt-text {
-            font-size:20pt;
+            font-size:16pt;
             padding: 10px;
         }
 
         .languages_list {
             font-size:18px;
         }
+
+        .panel-collapse {
+            background-color: #f2f2f2;
+            border-style: solid;
+        }
     </style>
 
-    <script>
-
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body onload="retrieveNext();">
-    <h1 style="text-align: center;">English Dialect Survey</h1>
-    <div style="height:450px">
+    <br>
+    <h1 style="text-align: center;"><u>English Dialect Survey</u></h1>
+
+    <div class="panel-heading center">
+        <h4 class="panel-title" style="font-weight: bold">
+            Instructions &nbsp; <a data-toggle="collapse" href="#collapse0" style="color:#0080ff;font-weight:normal;text-decoration: underline;">(Expand/Collapse)</a>
+        </h4>
+    </div>
+    <div class="panel-collapse collapse center" id="collapse0">
+        <p><b>Purpose:</b> The purpose of this survey is to decide which of <a href="https://ewave-atlas.org/languages" target="_blank">77 cataloged varieties of English</a> you might speak, in addition to the variety that is used in these instructions <a href="https://www.thoughtco.com/standard-american-english-1692134">(SAE)</a>. No one variety is better or worse than any other, but each follows its own unique set of rules about what is <em>possible</em> (i.e. <em>well-formed</em>, <em>grammatical</em>, <em>acceptable</em>) to say.</p>
+
+        <p><b>Task:</b> You see below a Dialect Excerpt (#2) from one of these 77 varieties along with its SAE Gloss (#1) above that. You should mark <span style="color: #78A65A;"><b>Acceptable</b></span> if and only if the following are true:
+        <ol>
+            <li>(#2) follows all of the rules and constraints about what is possible to say in your variety of English.</li>
+            <li>(#1) and (#2) can both be used to mean the same (or nearly the same) thing, according to your understanding.</li>
+        </ol>
+        Otherwise, mark <span style="color: #BB271A;"><b>Not Acceptable</b></span>.
+        <br>
+        <br>
+        <p><b>Note:</b> the following should <b>NOT</b> be used to decide if a sentence is <span style="color: #78A65A;"><b>Acceptable</b></span>:</p>
+        <ol>
+            <li>Whether or not the sentence is meaningful.</li>
+            <li>Whether or not you've seen the sentence before or think it is statistically probable.</li>
+            <li>Whether or not you think the sentence is <em>socially</em> acceptable.</li>
+        </ol>
+        <p>Rely only on you understanding of how language works in the particular variety of English you speak.</p>
+        <p><b>Tip:</b> You may speak <em>multiple</em> different varieties of English, but this quiz will work best if you focus on just one. To single one out, maybe you can imagine you are speaking only with one particular group of people in one particular setting.</p>
+    </div>
+
+    <div style="height:375px">
         <div class='center'>
-            <h4>(1) Standard English Gloss:</h4>
+            <h4>(1) SAE Gloss:</h4>
             <div class="excerpt" style="margin-top: 40">
                 <div style="padding-left:20px;">
                     <em><p class="excerpt-text" id="query_alt"></p></em>
@@ -114,8 +145,9 @@
 
     <!-- <input type="text" id="search" name="search"> -->
     <center>
-        <input class="button button-accept" onclick="acceptIt();" value="Acceptable">
-        <input class="button button-decline" onclick="declineIt();" value="Not Acceptable">
+        <button class="button button-accept" onclick="acceptIt();">Acceptable</button>
+        <!--<div style="width: 5px;"></div> -->
+        <button class="button button-decline" onclick="declineIt();">Not Acceptable</button>
     </center>
 <!--    <center onclick="getNext()">
         <input class="btn btn-primary" id="submitButton" onclick="getNext()" type="submit" value="Submit">
