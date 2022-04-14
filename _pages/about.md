@@ -9,8 +9,8 @@ profile:
   align: right
   image: prof_pic.jpg
   address: >
-    <p>CODA E1580D</p>
-    <p>756 W Peachtree St NW</p>
+    <p>CODA 1124E</p>
+    <p>756 W Peachtree St</p>
     <p>Atlanta, GA 30308</p>
 
 news: true
