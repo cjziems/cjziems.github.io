@@ -17,11 +17,11 @@ news: true
 social: true
 ---
 
-I am a third-year PhD student in the [**School of Interactive Computing**](https://www.ic.gatech.edu/) at Georgia Tech, where I am fortunate to be advised by Prof. [**Diyi Yang**](https://www.cc.gatech.edu/~dyang888/index.html). 
+I am a third-year PhD student in the [**School of Interactive Computing**](https://www.ic.gatech.edu/) at Georgia Tech <img src="assets/img/gt.png" alt="gt" height="20px"/>, where I am fortunate to be advised by Prof. [**Diyi Yang**](https://www.cc.gatech.edu/~dyang888/index.html). 
 
-My research spans Computational Social Science and Social NLP. At the highest level, my work advances two sides of the same coin, which mutually inform and support one another. On one side, I use social science and linguistic insights to help build more equitable and socially-competent language technologies [[**ACL 2022a**](http://arxiv.org/abs/2204.03031); [**ACL 2022b**](http://arxiv.org/abs/2204.02952); [**ACL 2022c**](http://arxiv.org/abs/2204.03021)\]. On the other side of the coin, I leverage language technologies as tools to better understand pro-social and anti-social behaviors [[**ASONAM 2021**](https://arxiv.org/pdf/2005.12423.pdf); [**EMNLP 2021**](https://arxiv.org/pdf/2109.05325.pdf)\].
+My work spans empirical Natural Language Processing and Computational Social Science, and I'm particularly excited about three research thrusts: (1) dialect robust NLP [[**Multi-VALUE** 🆕](http://value-nlp.org/); [**VALUE** (ACL 2022a)](http://arxiv.org/abs/2204.03031)\], (2) social NLP [[**Positive Reframing** (ACL 2022b)](http://arxiv.org/abs/2204.02952); [**MIC** (ACL 2022c)](http://arxiv.org/abs/2204.03021)\], and (3) safety in online communities [[**Racism is a Virus** (ASONAM 2021)](https://arxiv.org/pdf/2005.12423.pdf); [**Latent Hate** (EMNLP 2021)](https://arxiv.org/abs/2109.05322)\].
 
-Previously, I spent my summers interning at [**Facebook AI Applied Research**](https://ai.facebook.com/research/#notable-papers), [**USC ISI**](https://www.isi.edu/), and [**Stanford CSLI**](https://www-csli.stanford.edu/). I received my B.S. with a double major in Computer Science and Mathematics from [**Emory University**](https://www.emory.edu/home/index.html).
+Previously, I spent my summers interning at [**Meta AI Applied Research**](https://ai.facebook.com/research/#notable-papers) <img src="assets/img/meta.png" alt="meta" height="12px"/>, [**USC ISI**](https://www.isi.edu/) <img src="assets/img/usc.png" alt="usc" height="20px"/>, and [**Stanford CSLI**](https://www-csli.stanford.edu/) <img src="assets/img/stanford.png" alt="stanford" height="20px"/>. I received my B.S. with a double major in Computer Science and Mathematics from [**Emory University**](https://www.emory.edu/home/index.html) <img src="assets/img/emory.png" alt="emory" height="20px"/>.
 
 As of 2021, I am supported by the [**NSF GRFP**](https://www.nsfgrfp.org/).
 
