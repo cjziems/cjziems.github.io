@@ -189,8 +189,8 @@
           <div class="badges">
             {%- if site.badges.altmetric_badge %}
             <span class="altmetric-embed" data-hide-no-mentions="true" data-hide-less-than="15" data-badge-type="2" data-badge-popover="right"
-              {% if entry.eprint %}
-                data-arxiv-id="{{ entry.eprint }}"
+              {% if entry.arxiv %}
+                data-arxiv-id="{{ entry.arxiv }}"
               {% elsif entry.doi %}
                 data-doi="{{ entry.doi }}"
               {% elsif entry.altmetric %}

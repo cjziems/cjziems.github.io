@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>datasets | Caleb  Ziems</title>
+    <meta name="author" content="Caleb  Ziems">
+    <meta name="description" content="PhD student in the Stanford NLP Group
+">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    <!-- Styles -->
+    
+    <link rel="shortcut icon" href="/assets/img/caleb_sf_small.png">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="/datasets/">
+    
+    <!-- Dark Mode -->
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Caleb </span>Ziems</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">resources</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/datasets/">datasets</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/repositories/">repositories</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/fellowships/">fellowships</a>
+                </div>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- page.html -->
+        <div class="post">
+
+          <header class="post-header">
+            <h1 class="post-title">datasets</h1>
+            <p class="post-description"></p>
+          </header>
+
+          <article>
+            <h2 id="-implicit-hate">🤗 <a href="https://huggingface.co/datasets/SALT-NLP/ImplicitHate" rel="external nofollow noopener" target="_blank">Implicit Hate</a>
+</h2>
+<h5 id="why-implicit-hate"><em>Why Implicit Hate?</em></h5>
+
+<p>It is important to consider the subtle tricks that many extremists use to mask their threats and abuse. These more implicit forms of hate speech may easily go undetected by keyword detection systems, and even the most advanced architectures can fail if they have not been trained on implicit hate speech (<a href="https://aclanthology.org/2020.lrec-1.760/" rel="external nofollow noopener" target="_blank">Caselli et al. 2020</a>).</p>
+
+<h5 id="whats-in-the-box"><em>What’s ‘in the box?’</em></h5>
+
+<p>This dataset contains <strong>22,056</strong> tweets from the most prominent extremist groups in the United States; <strong>6,346</strong> of these tweets contain <em>implicit hate speech.</em> We decompose the implicit hate class using the following taxonomy (distribution shown on the left).</p>
+
+<ul>
+  <li>
+<img src="https://progress-bar.dev/24" alt="24.2%"> <strong>Grievance:</strong> frustration over a minority group’s perceived privilege.</li>
+  <li>
+<img src="https://progress-bar.dev/20" alt="20.0%"> <strong>Incitement:</strong> implicitly promoting known hate groups and ideologies (e.g. by flaunting in-group power).</li>
+  <li>
+<img src="https://progress-bar.dev/14" alt="13.6%"> <strong>Inferiority:</strong> implying some group or person is of lesser value than another.</li>
+  <li>
+<img src="https://progress-bar.dev/23" alt="12.6%"> <strong>Irony:</strong> using sarcasm, humor, and satire to demean someone.</li>
+  <li>
+<img src="https://progress-bar.dev/18" alt="17.9%"> <strong>Stereotypes:</strong> associating a group with negative attribute using euphemisms, circumlocution, or metaphorical language.</li>
+  <li>
+<img src="https://progress-bar.dev/11" alt="10.5%"> <strong>Threats:</strong> making an indirect commitment to attack someone’s body, well-being, reputation, liberty, etc.</li>
+  <li>
+<img src="https://progress-bar.dev/1" alt="1.2%"> <strong>Other</strong>
+</li>
+</ul>
+
+<p>Each of the 6,346 implicit hate tweets also has free-text annotations for <em>target demographic group</em> and an <em>implied statement</em> to describe the underlying message (see banner image above).</p>
+
+<h5 id="what-can-i-do-with-this-data"><em>What can I do with this data?</em></h5>
+
+<p>State-of-the-art neural models may be able to learn from our data how to (1) classify this more difficult class of hate speech and (3) explain implicit hate by generating descriptions of both the <em>target</em> and the <em>implied message.</em> As our paper baselines show, neural models still have a ways to go, especially with classifying <em>implicit hate categories</em>, but overall, the results are promising, especially with <em>implied statement generation,</em> an admittedly challenging task.</p>
+
+<p>We hope you can extend our baselines and further our efforts to understand and address some of these most pernicious forms of language that plague the web, especially among extremist groups.</p>
+
+<h2 id="-mic">🤗 <a href="https://huggingface.co/datasets/SALT-NLP/MIC" rel="external nofollow noopener" target="_blank">MIC</a>
+</h2>
+
+<h5 id="why-mic"><em>Why MIC?</em></h5>
+
+<p>Open-domain or “chit-chat” conversational agents often reflect insensitive, hurtful, or contradictory viewpoints that erode a user’s trust in the integrity of the system. Moral integrity is one important pillar for building trust.</p>
+
+<p><code class="language-plaintext highlighter-rouge">MIC</code> is a dataset that can help us understand chatbot behaviors through their latent values and moral statements.</p>
+
+<h5 id="whats-in-the-box-1"><em>What’s ‘in the box?’</em></h5>
+
+<p><code class="language-plaintext highlighter-rouge">MIC</code> contains 114k annotations, with 99k distinct “Rules of Thumb” (RoTs) that capture the moral assumptions of 38k chatbot replies to open-ended prompts. These RoTs represent diverse moral viewpoints, with the following distribution of underlying moral foundations:</p>
+
+<ul>
+  <li>
+<img src="https://progress-bar.dev/51" alt="51%"> <strong>Care:</strong> wanting someone or something to be safe, healthy, and happy. (58k chatbot replies)</li>
+  <li>
+<img src="https://progress-bar.dev/21" alt="21%"> <strong>Fairness:</strong> wanting to see individuals or groups treated equally or equitably. (24k)</li>
+  <li>
+<img src="https://progress-bar.dev/19" alt="19%"> <strong>Liberty:</strong> wanting people to be free to make their own decisions. (22k)</li>
+  <li>
+<img src="https://progress-bar.dev/19" alt="19%"> <strong>Loyalty:</strong> wanting unity and seeing people keep promises or obligations to an in-group. (22k)</li>
+  <li>
+<img src="https://progress-bar.dev/18" alt="18%"> <strong>Authority:</strong> wanting to respect social roles, duties, privacy, peace, and order. (20k)</li>
+  <li>
+<img src="https://progress-bar.dev/11" alt="11%"> <strong>Sanctity:</strong> wanting people and things to be clean, pure, innocent, and holy. (13k)</li>
+</ul>
+
+<h5 id="what-can-i-do-with-this-data-1"><em>What can I do with this data?</em></h5>
+
+<p>We can train encoder-decoder models to automatically generate RoT explanations for chatbot behaviors. This could facilitate explainable downstream applications. For example, we could train RL systems that demote chatbot replies which fall into certain moral classes or train safety classifiers that guide systems towards the desired behaviors, with sensitivity towards ideological and political difference.</p>
+
+<p>In the RoT generation task, we find our best models match the quality, fluency, and relevance of human annotations, but they still generate irrelevant RoTs nearly 28% of the time. This suggests that the proposed generation task is not yet solved and that <code class="language-plaintext highlighter-rouge">MIC</code> can continue to serve as resource for ongoing work in developing morally-consistent conversational agents.</p>
+
+<h2 id="-positive-reframing">🤗 <a href="https://huggingface.co/datasets/SALT-NLP/positive_reframing" rel="external nofollow noopener" target="_blank">Positive Reframing</a>
+</h2>
+
+<h5 id="why-positive-frames"><em>Why Positive Frames?</em></h5>
+
+<p>This work was inspired by the need to escape the negative patterns of thinking that began to overwhelm the authors during the COVID-19 pandemic. We realized that what we needed was not some naive belief that everything would be okay if we ignored our problems. Instead, we needed <em>reframing</em>, or a shift in focus, with less weight on the negative things we can’t control, and more weight on the positive things about ourselves and our situation which we can control.</p>
+
+<p><em>Positive reframing</em> induces a complementary positive viewpoint (e.g. glass-half-full), which nevertheless supports the underlying content of the original sentence (see diagram above). The reframe implicates rather than contradicts the source, and the transformation is motivated by theoretically justified strategies from positive psychology (see <em>What’s ‘in the box?’</em>).</p>
+
+<p>Our work shows how NLP can help lead the way by automatically reframing overly negative text using strategies from positive psychology.</p>
+
+<h5 id="whats-in-the-box-2"><em>What’s ‘in the box?’</em></h5>
+
+<p>The <code class="language-plaintext highlighter-rouge">Positive Psychology Frames</code> dataset contains <strong>8,349</strong> reframed sentence pairs, where the original sentence is drawn from a negative tweet (#stressed), and a reframed copy is provided by a crowdworker who was trained in the methods of positive psychology. Our positive psychology frames taxonomy is defined below (with the distribution of labels shown on the left).</p>
+
+<ul>
+  <li>
+<img src="https://progress-bar.dev/25" alt="25.4%"> <strong>Growth Mindset:</strong> Viewing a challenging event as an opportunity for the author specifically to grow or improve themselves.</li>
+  <li>
+<img src="https://progress-bar.dev/20" alt="19.5%"> <strong>Impermanence:</strong> Saying bad things don’t last forever, will get better soon, and/or that others have experienced similar struggles.</li>
+  <li>
+<img src="https://progress-bar.dev/36" alt="36.1%"> <strong>Neutralizing:</strong> Replacing a negative word with a neutral word.</li>
+  <li>
+<img src="https://progress-bar.dev/49" alt="48.7%"> <strong>Optimism:</strong> Focusing on things about the situation itself, in that moment, that are good (not just forecasting a better future).</li>
+  <li>
+<img src="https://progress-bar.dev/10" alt="10.1%"> <strong>Self-Affirmation:</strong> Talking about what strengths the author already has, or the values they admire, like love, courage, perseverance, etc.</li>
+  <li>
+<img src="https://progress-bar.dev/13" alt="13.0%"> <strong>Thankfulness:</strong> Expressing thankfulness or gratitude with key words like appreciate, glad that, thankful for, good thing, etc.</li>
+</ul>
+
+<h5 id="what-can-i-do-with-this-data-2"><em>What can I do with this data?</em></h5>
+
+<p>State-of-the-art neural models can learn from our data how to (1) shift a negatively distorted text into a more positive perspective using a combination of strategies from positive psychology; and (2) recognize or classify the psychological strategies that are used to reframe a given source.</p>
+
+<p>As our paper baselines show, neural models still have a long ways to go before they can reliably generate positive perspectives. We see particular errors from <em>insubstantial changes, contradictions to the premise, self-contradictions, and hallucinations</em>. Overall, our suggests that our dataset can serve as a useful benchmark for building natural language generation systems with positive perspectives.</p>
+
+          </article>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Caleb  Ziems. Last updated: April 13, 2023.
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script defer src="/assets/js/common.js"></script>
+  <script defer src="/assets/js/copy_code.js" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>
