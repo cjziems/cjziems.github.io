@@ -1,20 +1,19 @@
 ---
 layout: about
 title: about
-order: 0
 permalink: /
-description:
+subtitle:
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: caleb_sf.jpeg
+  image_circular: true # crops the image to make it circular
   address: >
-    <p>CODA 1124E</p>
-    <p>756 W Peachtree St</p>
-    <p>Atlanta, GA 30308</p>
 
-news: true
-social: true
+news: true  # includes a list of news items
+latest_posts: false  # includes a list of the newest posts
+selected_papers: true # includes a list of papers marked as "selected={true}"
+social: true  # includes social icons at the bottom of the page
 ---
 
 I am a third-year PhD student in the [**School of Interactive Computing**](https://www.ic.gatech.edu/) at Georgia Tech <img src="assets/img/gt.png" alt="gt" height="20px"/>, where I am fortunate to be advised by Prof. [**Diyi Yang**](https://www.cc.gatech.edu/~dyang888/index.html). 

@@ -1,44 +1,73 @@
-Chen:
+"Held":
+  - firstname: ["William", "Will", "William Barr"]
+    url: https://williamheld.com/
+
+"ElSherief":
+  - firstname: ["Mai"]
+    url: https://melsherief.eng.ucsd.edu/
+
+"Harris":
+  - firstname: ["Camille"]
+    url: https://camille2019.github.io/
+
+"Chen":
+  - firstname: ["Jiaao"]
     url: https://sites.cc.gatech.edu/~jchen896/
 
-Wang:
+"Wang":
+  - firstname: ["Yi-Chia"]
     url: https://scholar.google.com/citations?user=9gMgFPQAAAAJ&hl=en
 
-Halevy:
+"Halevy":
+  - firstname: ["Alon"]
     url: https://homes.cs.washington.edu/~alon/
 
-ElSherief:
-    url: https://mayelsherif.github.io/melsherif/
+"Yang": 
+  - firstname: ["Diyi"]
+    url: https://cs.stanford.edu/~diyiy/
 
-Yang:
-    url: https://www.cc.gatech.edu/~dyang888/
+  - firstname: ["Jingfeng"]
+    url: https://jingfengyang.github.io/
 
-Muchlinski:
+"Li":
+  - firstname: ["Minzhi", "Ella"]
+    url: https://scholar.google.com/citations?user=HsigY9MAAAAJ&hl=en
+
+  - firstname: ["Other", "C. P. E."]
+    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+
+"Yu":
+  - firstname: ["Jane"]
+    url: https://janedwivedi.github.io/
+
+"Dwivedi-Yu":
+  - firstname: ["Jane"]
+    url: https://janedwivedi.github.io/
+
+"Muchlinski":
+  - firstname: ["David"]
     url: https://www.davidmuchlinski.com/
 
-De Choudhury:
+"De Choudhury":
+  - firstname: ["Munmun"]
     url: http://www.munmund.net/
 
-Wright:
-    url: https://www.austinpwright.com/
-
-Park:
-    url: https://haekyu.com/
-
-Chau:
-    url: https://www.cc.gatech.edu/~dchau/
-
-Kumar:
+"Kumar":
+  - firstname: ["Srijan"]
     url: https://www.cc.gatech.edu/~srijan/
 
-Ramakrishnan:
+"Ramakrishnan":
+  - firstname: ["Naren"]
     url: https://people.cs.vt.edu/naren/
 
-Morstatter:
+"Morstatter":
+  - firstname: ["Fred"]
     url: https://isi.edu/~fredmors/
 
-Soni:
+"Soni":
+  - firstname: ["Sandeep"]
     url: https://sandeepsoni.github.io/
 
-Vigfusson:
+"Vigfusson":
+  - firstname: ["Ymir", "Ýmir"]
     url: https://ymsir.com/index.html

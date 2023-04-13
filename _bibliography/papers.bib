@@ -1,83 +1,158 @@
 ---
 ---
 
+@article{ziems2022multi,
+  bibtex_show={true},
+  title={Multi-VALUE: A Framework for Cross-Dialectal English NLP},
+  author={Ziems, Caleb and Held, William and Yang, Jingfeng and Yang, Diyi},
+  journal={arXiv preprint arXiv:2212.08011},
+  year={2022},
+  month=dec,
+  abbr={Pre-Print},
+  arxiv={2212.08011},
+  altmetric={false},
+  website={http://value-nlp.org/},
+  preview={multi_value_pipeline.png},
+  abstract = "Dialect differences caused by regional, social, and economic barriers cause performance discrepancies for many groups of users of language technology. Fair, inclusive, and equitable language technology must critically be dialect invariant, meaning that performance remains constant over dialectal shifts. Current English systems often fall significantly short of this ideal since they are designed and tested on a single dialect: Standard American English. We introduce Multi-VALUE -- a suite of resources for evaluating and achieving English dialect invariance. We build a controllable rule-based translation system spanning 50 English dialects and a total of 189 unique linguistic features. Our translation maps Standard American English text to synthetic form of each dialect, which uses an upper-bound on the natural density of features in that dialect. First, we use this system to build stress tests for question answering, machine translation, and semantic parsing tasks. Stress tests reveal significant performance disparities for leading models on non-standard dialects. Second, we use this system as a data augmentation technique to improve the dialect robustness of existing systems. Finally, we partner with native speakers of Chicano and Indian English to release new gold-standard variants of the popular CoQA task.",
+  code={https://github.com/SALT-NLP/multi-value},
+}
+
 @inproceedings{ziems-etal-2022-positive-frames,
+    bibtex_show={true},
     title = "Inducing Positive Perspectives with Text Reframing",
     author = "Ziems, Caleb  and
       Li, Minzhi  and
       Zhang, Anthony  and
       Yang, Diyi",
-    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.257",
+    pages = "3682--3700",
+    abstract = "Sentiment transfer is one popular example of a text style transfer task, where the goal is to reverse the sentiment polarity of a text. With a sentiment reversal comes also a reversal in meaning. We introduce a different but related task called positive reframing in which we neutralize a negative point of view and generate a more positive perspective for the author without contradicting the original meaning. Our insistence on meaning preservation makes positive reframing a challenging and semantically rich task. To facilitate rapid progress, we introduce a large-scale benchmark, Positive Psychology Frames, with 8,349 sentence pairs and 12,755 structured annotations to explain positive reframing in terms of six theoretically-motivated reframing strategies. Then we evaluate a set of state-of-the-art text style transfer models, and conclude by discussing key challenges and directions for future work.",
     abbr={ACL},
-    pdf={positive-frames.pdf},
-    data={https://github.com/GT-SALT/positive-frames},
-    year = {2022}
+    html={https://aclanthology.org/2022.acl-long.257},
+    code={https://github.com/SALT-NLP/positive-frames},
+    preview={positive_reframing.png},
+    slides={slides/positive_reframing.pdf},
+    note={<i class="fas fa-award"></i> <b>Outstanding Paper</b>}
 }
 
 @inproceedings{ziems-etal-2022-mic,
+    bibtex_show={true},
     title = "The Moral Integrity Corpus: A Benchmark for Ethical Dialogue Systems",
-    author = "Ziems, Caleb and Yu, Jane A. and Wang, Yi-Chia and Halevy, Alon Y. and Yang, Diyi",
-    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)",
+    author = "Ziems, Caleb  and
+      Yu, Jane  and
+      Wang, Yi-Chia  and
+      Halevy, Alon  and
+      Yang, Diyi",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.261",
+    pages = "3755--3773",
+    abstract = "Conversational agents have come increasingly closer to human competence in open-domain dialogue settings; however, such models can reflect insensitive, hurtful, or entirely incoherent viewpoints that erode a user{'}s trust in the moral integrity of the system. Moral deviations are difficult to mitigate because moral judgments are not universal, and there may be multiple competing judgments that apply to a situation simultaneously. In this work, we introduce a new resource, not to authoritatively resolve moral ambiguities, but instead to facilitate systematic understanding of the intuitions, values and moral judgments reflected in the utterances of dialogue systems. The Moral Integrity Corpus, MIC, is such a resource, which captures the moral assumptions of 38k prompt-reply pairs, using 99k distinct Rules of Thumb (RoTs). Each RoT reflects a particular moral conviction that can explain why a chatbot{'}s reply may appear acceptable or problematic. We further organize RoTs with a set of 9 moral and social attributes and benchmark performance for attribute classification. Most importantly, we show that current neural language models can automatically generate new RoTs that reasonably describe previously unseen interactions, but they still struggle with certain scenarios. Our findings suggest that MIC will be a useful resource for understanding and language models{'} implicit moral assumptions and flexibly benchmarking the integrity of conversational agents.",
     abbr={ACL},
-    pdf={mic.pdf},
-    data={https://github.com/GT-SALT/mic},
-    year = {2022}
+    slides={slides/mic.pdf},
+    html={https://aclanthology.org/2022.acl-long.261/},
+    code={https://github.com/SALT-NLP/mic},
+  altmetric={false},
+    preview={mic.png}
 }
 
 @inproceedings{ziems-etal-2022-value,
-    title = "VALUE: Understanding Dialect Disparity in NLU",
+    bibtex_show={true},
+    title = "{VALUE}: {U}nderstanding Dialect Disparity in {NLU}",
     author = "Ziems, Caleb  and
       Chen, Jiaao  and
       Harris, Camille  and
-      Anderson, Jessica and
+      Anderson, Jessica  and
       Yang, Diyi",
-    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)",
+    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = may,
+    year = "2022",
+    address = "Dublin, Ireland",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.acl-long.258",
+    pages = "3701--3720",
+    abstract = "English Natural Language Understanding (NLU) systems have achieved great performances and even outperformed humans on benchmarks like GLUE and SuperGLUE. However, these benchmarks contain only textbook Standard American English (SAE). Other dialects have been largely overlooked in the NLP community. This leads to biased and inequitable NLU systems that serve only a sub-population of speakers. To understand disparities in current models and to facilitate more dialect-competent NLU systems, we introduce the VernAcular Language Understanding Evaluation (VALUE) benchmark, a challenging variant of GLUE that we created with a set of lexical and morphosyntactic transformation rules. In this initial release (V.1), we construct rules for 11 features of African American Vernacular English (AAVE), and we recruit fluent AAVE speakers to validate each feature transformation via linguistic acceptability judgments in a participatory design manner. Experiments show that these new dialectal features can lead to a drop in model performance.",
     abbr={ACL},
-    pdf={value.pdf},
-    data={https://github.com/GT-SALT/value},
-    year = {2022}
+    code={https://github.com/SALT-NLP/value},
+    preview={value.png},
+    html={https://aclanthology.org/2022.acl-long.258/},
+    slides={slides/value.pdf},
+  altmetric={false}
 }
 
 
 @inproceedings{elsherief-2021-latent-hatred,
- title = {Latent Hatred: A Benchmark for Understanding Implicit Hate Speech},
- author = {ElSherief, Mai and Ziems, Caleb and Muchlinski, David and Anupindi, Vaishnavi and Seybolt, Jordyn and De Choudhury, Munmun, and Yang, Diyi},
- booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+ bibtex_show={true},
+ title = "Latent Hatred: A Benchmark for Understanding Implicit Hate Speech",
+    author = "ElSherief, Mai  and
+      Ziems, Caleb  and
+      Muchlinski, David  and
+      Anupindi, Vaishnavi  and
+      Seybolt, Jordyn  and
+      De Choudhury, Munmun  and
+      Yang, Diyi",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.29",
+    pages = "345--363",
+    abstract = "Hate speech has grown significantly on social media, causing serious consequences for victims of all demographics. Despite much attention being paid to characterize and detect discriminatory speech, most work has focused on explicit or overt hate speech, failing to address a more pervasive form based on coded or indirect language. To fill this gap, this work introduces a theoretically-justified taxonomy of implicit hate speech and a benchmark corpus with fine-grained labels for each message and its implication. We present systematic analyses of our dataset using contemporary baselines to detect and explain implicit hate speech, and we discuss key features that challenge existing models. This dataset will continue to serve as a useful benchmark for understanding this multifaceted issue.",
  abbr={EMNLP},
- pdf={implicit-hate.pdf},
- data={https://github.com/GT-SALT/implicit-hate},
- year = {2021}
+ code={https://github.com/SALT-NLP/implicit-hate},
+  altmetric={false},
+  html={https://aclanthology.org/2021.emnlp-main.29/},
+  slides={slides/implicit_hate.pdf},
+ preview={implicit_hate.png}
 }
 
-@inproceedings{ziems2021protect,
- author = {Ziems, Caleb and Yang, Diyi},
- booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing: Findings (EMNLP)},
- title = {To Protect and To Serve? Analyzing Entity-Centric Framing of Police Violence},
+@inproceedings{ziems-yang-2021-protect-serve,
+ bibtex_show={true},
+ title = "To Protect and To Serve? Analyzing Entity-Centric Framing of Police Violence",
+    author = "Ziems, Caleb  and
+      Yang, Diyi",
+    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2021",
+    month = nov,
+    year = "2021",
+    address = "Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.findings-emnlp.82",
+    pages = "957--976",
+    abstract = "Framing has significant but subtle effects on public opinion and policy. We propose an NLP framework to measure entity-centric frames. We use it to understand media coverage on police violence in the United States in a new Police Violence Frames Corpus of 82k news articles spanning 7k police killings. Our work uncovers more than a dozen framing devices and reveals significant differences in the way liberal and conservative news sources frame both the issue of police violence and the entities involved. Conservative sources emphasize when the victim is armed or attacking an officer and are more likely to mention the victim{'}s criminal record. Liberal sources focus more on the underlying systemic injustice, highlighting the victim{'}s race and that they were unarmed. We discover temporary spikes in these injustice frames near high-profile shooting events, and finally, we show protest volume correlates with and precedes media framing decisions.",
  abbr={EMNLP},
- pdf={framing-police-violence.pdf},
- data={https://github.com/GT-SALT/framing-police-violence},
- year = {2021}
+ html={https://aclanthology.org/2021.findings-emnlp.82/},
+ code={https://github.com/SALT-NLP/framing-police-violence},
+ slides={slides/police_violence.pdf},
+ year = {2021},
+  altmetric={false},
+ preview={police_violence.png}
 }
 
 @inproceedings{he2021yearlong,
+  bibtex_show={true},
   title={Racism is a Virus: Anti-Asian Hate and Counterhate in Social Media during the COVID-19 Crisis},
   author={He, Bing and Ziems, Caleb and Soni, Sandeep and Ramakrishnan, Naren and Yang, Diyi and Kumar, Srijan},
   booktitle={2021 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM)},
   year={2021},
   abbr={ASONAM},
-  pdf={covid-hate.pdf},
-  web={http://claws.cc.gatech.edu/covid}
-}
-
-@article{wright2021quantifying,
-  title={Quantifying the Impact of Human Capital, Job History, and Language Factors on Job Seniority with a Large-scale Analysis of Resumes},
-  author={Wright, Austin P and Ziems, Caleb and Park, Haekyu and Saad-Falcon, Jon and Chau, Duen Horng and Yang, Diyi and Tomprou, Maria},
-  journal={arXiv preprint arXiv:2106.11846},
-  year={2021},
-  abbr={Pre-Print}
+  website={http://claws.cc.gatech.edu/covid},
+  altmetric={false},
+  arxiv={2005.12423},
+  abstract="The spread of COVID-19 has sparked racism and hate on social media targeted towards Asian communities. However, little is known about how racial hate spreads during a pandemic and the role of counterspeech in mitigating this spread. In this work, we study the evolution and spread of anti-Asian hate speech through the lens of Twitter. We create COVID-HATE, the largest dataset of anti-Asian hate and counterspeech spanning 14 months, containing over 206 million tweets, and a social network with over 127 million nodes. By creating a novel hand-labeled dataset of 3,355 tweets, we train a text classifier to identify hate and counterspeech tweets that achieves an average macro-F1 score of 0.832. Using this dataset, we conduct longitudinal analysis of tweets and users. Analysis of the social network reveals that hateful and counterspeech users interact and engage extensively with one another, instead of living in isolated polarized communities. We find that nodes were highly likely to become hateful after being exposed to hateful content. Notably, counterspeech messages may discourage users from turning hateful, potentially suggesting a solution to curb hate on web and social media platforms.",
+  preview={racism_virus.png}
 }
 
 @inproceedings{ziems2020aggressive,
+  bibtex_show={true},
   title={Aggressive, Repetitive, Intentional, Visible, and Imbalanced: Refining Representations for Cyberbullying Classification},
   author={Ziems, Caleb and Vigfusson, Ymir and Morstatter, Fred},
   booktitle={Proceedings of the International AAAI Conference on Web and Social Media},
@@ -85,8 +160,9 @@
   pages={808--819},
   abbr={ICWSM},
   year={2020},
-  pdf={cyberbullying-representations.pdf},
-  slides={cyberbullying-representations-slides.pdf},
-  data={https://github.com/cjziems/cyberbullying-representations},
-  talk={https://www.youtube.com/watch?v=O1t3S7Lesss&feature=youtu.be}
+  altmetric={false},
+  arxiv={2004.01820},
+  slides={slides/cyberbullying-representations-slides.pdf},
+  code={https://github.com/cjziems/cyberbullying-representations},
+  note={<i class="fas fa-award"></i> <b>Best Paper Honorable Mention</b>}
 }
