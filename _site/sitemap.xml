@@ -64,6 +64,9 @@
 <loc>/</loc>
 </url>
 <url>
+<loc>/code/</loc>
+</url>
+<url>
 <loc>/cv/</loc>
 </url>
 <url>
@@ -80,9 +83,6 @@
 </url>
 <url>
 <loc>/publications/</loc>
-</url>
-<url>
-<loc>/repositories/</loc>
 </url>
 <url>
 <loc>/blog/tag/formatting/</loc>

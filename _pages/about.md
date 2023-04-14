@@ -9,6 +9,8 @@ profile:
   image: caleb_sf.jpeg
   image_circular: true # crops the image to make it circular
   address: >
+    <p align="center" style="color:#B509AC">email:</p>
+    <p align="center">cziems [at] stanford [dot] edu</p> 
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
@@ -24,4 +26,4 @@ Previously, I spent my summers interning at [**Meta AI Applied Research**](https
 
 As of 2021, I am supported by the [**NSF GRFP**](https://www.nsfgrfp.org/).
 
-I'd love to hear from you! Please reach out :grinning:
+I'd love to hear from you! Please reach out :handshake:
