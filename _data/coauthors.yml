@@ -1,3 +1,11 @@
+"Gupta":
+  - firstname: ["Rahul"]
+    url: https://scholar.google.com/citations?user=1CFrm2YAAAAJ&hl=en
+
+"Dhamala":
+  - firstname: ["Jwala"]
+    url: https://jwaladhamala.com/
+
 "Held":
   - firstname: ["William", "Will", "William Barr"]
     url: https://williamheld.com/
@@ -8,7 +16,7 @@
 
 "ElSherief":
   - firstname: ["Mai"]
-    url: https://melsherief.eng.ucsd.edu/
+    url: https://scholar.google.com/citations?user=Rykl2HkAAAAJ&hl=en
 
 "Harris":
   - firstname: ["Camille"]
