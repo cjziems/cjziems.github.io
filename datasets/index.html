@@ -109,13 +109,36 @@
           </header>
 
           <article>
-            <h2 id="-implicit-hate">🤗 <a href="https://huggingface.co/datasets/SALT-NLP/ImplicitHate" rel="external nofollow noopener" target="_blank">Implicit Hate</a>
+            <h2 id="normbank"><a href="https://drive.google.com/drive/folders/1XRhrzgG_R0zypPgPlCxK0nlqKbfaI9xe?usp=drive_link" rel="external nofollow noopener" target="_blank">NormBank</a></h2>
+<h5 id="why-normbank"><em>Why NormBank?</em></h5>
+<p><code class="language-plaintext highlighter-rouge">NormBank</code> is built to ground flexible normative reasoning for interactive, assistive, and collaborative AI systems. Unlike prior commonsense resources, <code class="language-plaintext highlighter-rouge">NormBank</code> grounds each inference within a multivalent sociocultural frame, which includes the setting (e.g., restaurant), the agents’ contingent roles (waiter, customer), their attributes (age, gender), and other physical, social, and cultural constraints (e.g., the temperature or the country of operation).</p>
+
+<h5 id="whats-in-the-box"><em>What’s ‘in the box?’</em></h5>
+<p>Constraints apply in different combinations to frame social norms. Under these manipulations, norms are non-monotonic — one can cancel an inference by updating its frame even slightly.</p>
+
+<p>In total, <code class="language-plaintext highlighter-rouge">NormBank</code> contains 63k unique constraints from a taxonomy that includes the Setting (i.e., the loci of scripted social interactions, such as banks, classrooms, homes, hospitals) as well as…</p>
+
+<ul>
+  <li>
+<img src="https://progress-bar.dev/26" alt="26%"> <strong>Roles:</strong> setting-specific clusters of identity and responsibility (e.g., customer, server)</li>
+  <li>
+<img src="https://progress-bar.dev/36" alt="36%"> <strong>Attributes:</strong> properties of individual agents that determine their social norms (e.g., age, gender)</li>
+  <li>
+<img src="https://progress-bar.dev/16" alt="16%"> <strong>Environmental Factors:</strong> physical and situational signals that can trigger associative priming of social norms (e.g., time, country of origin, noise level, safety, privacy, cleanliness)</li>
+  <li>
+<img src="https://progress-bar.dev/16" alt="16%"> <strong>Behaviors:</strong> the primary target of analysis for social norms(e.g., drinking alcohol, going on a date)</li>
+</ul>
+
+<h5 id="what-can-i-do-with-this-data"><em>What can I do with this data?</em></h5>
+<p><code class="language-plaintext highlighter-rouge">NormBank</code> is not designed for any particular narrow task; it is designed as a general-purpose knowledge resource that can ground social reasoning through downstream tasks. First, social scientists and engineers can NormBank as a static reference for discrete knowledge access about social norms that can inform downstream studies and design choices. Second, NLP researchers can use it to ground challenging NLP benchmark tasks. Third and most importantly, machine learning teams can incorporate <code class="language-plaintext highlighter-rouge">NormBank</code> into pre-training data for better transfer learning and downstream performance on social reasoning tasks.</p>
+
+<h2 id="-implicit-hate">🤗 <a href="https://huggingface.co/datasets/SALT-NLP/ImplicitHate" rel="external nofollow noopener" target="_blank">Implicit Hate</a>
 </h2>
 <h5 id="why-implicit-hate"><em>Why Implicit Hate?</em></h5>
 
 <p>It is important to consider the subtle tricks that many extremists use to mask their threats and abuse. These more implicit forms of hate speech may easily go undetected by keyword detection systems, and even the most advanced architectures can fail if they have not been trained on implicit hate speech (<a href="https://aclanthology.org/2020.lrec-1.760/" rel="external nofollow noopener" target="_blank">Caselli et al. 2020</a>).</p>
 
-<h5 id="whats-in-the-box"><em>What’s ‘in the box?’</em></h5>
+<h5 id="whats-in-the-box-1"><em>What’s ‘in the box?’</em></h5>
 
 <p>This dataset contains <strong>22,056</strong> tweets from the most prominent extremist groups in the United States; <strong>6,346</strong> of these tweets contain <em>implicit hate speech.</em> We decompose the implicit hate class using the following taxonomy (distribution shown on the left).</p>
 
@@ -139,7 +162,7 @@
 
 <p>Each of the 6,346 implicit hate tweets also has free-text annotations for <em>target demographic group</em> and an <em>implied statement</em> to describe the underlying message (see banner image above).</p>
 
-<h5 id="what-can-i-do-with-this-data"><em>What can I do with this data?</em></h5>
+<h5 id="what-can-i-do-with-this-data-1"><em>What can I do with this data?</em></h5>
 
 <p>State-of-the-art neural models may be able to learn from our data how to (1) classify this more difficult class of hate speech and (3) explain implicit hate by generating descriptions of both the <em>target</em> and the <em>implied message.</em> As our paper baselines show, neural models still have a ways to go, especially with classifying <em>implicit hate categories</em>, but overall, the results are promising, especially with <em>implied statement generation,</em> an admittedly challenging task.</p>
 
@@ -154,7 +177,7 @@
 
 <p><code class="language-plaintext highlighter-rouge">MIC</code> is a dataset that can help us understand chatbot behaviors through their latent values and moral statements.</p>
 
-<h5 id="whats-in-the-box-1"><em>What’s ‘in the box?’</em></h5>
+<h5 id="whats-in-the-box-2"><em>What’s ‘in the box?’</em></h5>
 
 <p><code class="language-plaintext highlighter-rouge">MIC</code> contains 114k annotations, with 99k distinct “Rules of Thumb” (RoTs) that capture the moral assumptions of 38k chatbot replies to open-ended prompts. These RoTs represent diverse moral viewpoints, with the following distribution of underlying moral foundations:</p>
 
@@ -173,7 +196,7 @@
 <img src="https://progress-bar.dev/11" alt="11%"> <strong>Sanctity:</strong> wanting people and things to be clean, pure, innocent, and holy. (13k)</li>
 </ul>
 
-<h5 id="what-can-i-do-with-this-data-1"><em>What can I do with this data?</em></h5>
+<h5 id="what-can-i-do-with-this-data-2"><em>What can I do with this data?</em></h5>
 
 <p>We can train encoder-decoder models to automatically generate RoT explanations for chatbot behaviors. This could facilitate explainable downstream applications. For example, we could train RL systems that demote chatbot replies which fall into certain moral classes or train safety classifiers that guide systems towards the desired behaviors, with sensitivity towards ideological and political difference.</p>
 
@@ -190,7 +213,7 @@
 
 <p>Our work shows how NLP can help lead the way by automatically reframing overly negative text using strategies from positive psychology.</p>
 
-<h5 id="whats-in-the-box-2"><em>What’s ‘in the box?’</em></h5>
+<h5 id="whats-in-the-box-3"><em>What’s ‘in the box?’</em></h5>
 
 <p>The <code class="language-plaintext highlighter-rouge">Positive Psychology Frames</code> dataset contains <strong>8,349</strong> reframed sentence pairs, where the original sentence is drawn from a negative tweet (#stressed), and a reframed copy is provided by a crowdworker who was trained in the methods of positive psychology. Our positive psychology frames taxonomy is defined below (with the distribution of labels shown on the left).</p>
 
@@ -209,7 +232,7 @@
 <img src="https://progress-bar.dev/13" alt="13.0%"> <strong>Thankfulness:</strong> Expressing thankfulness or gratitude with key words like appreciate, glad that, thankful for, good thing, etc.</li>
 </ul>
 
-<h5 id="what-can-i-do-with-this-data-2"><em>What can I do with this data?</em></h5>
+<h5 id="what-can-i-do-with-this-data-3"><em>What can I do with this data?</em></h5>
 
 <p>State-of-the-art neural models can learn from our data how to (1) shift a negatively distorted text into a more positive perspective using a combination of strategies from positive psychology; and (2) recognize or classify the psychological strategies that are used to reframe a given source.</p>
 
@@ -224,7 +247,7 @@
     <!-- Footer -->    
     <footer class="fixed-bottom">
       <div class="container mt-0">
-        © Copyright 2023 Caleb  Ziems. Last updated: June 06, 2023.
+        © Copyright 2023 Caleb  Ziems. Last updated: October 25, 2023.
       </div>
     </footer>
 
