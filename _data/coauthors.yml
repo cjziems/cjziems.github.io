@@ -1,45 +1,46 @@
-"Gupta":
-  - firstname: ["Rahul"]
-    url: https://scholar.google.com/citations?user=1CFrm2YAAAAJ&hl=en
+"Chen":
+  - firstname: ["Jiaao"]
+    url: https://cs.stanford.edu/people/jiaaoc/
+
+"De Choudhury":
+  - firstname: ["Munmun"]
+    url: http://www.munmund.net/
 
 "Dhamala":
   - firstname: ["Jwala"]
     url: https://jwaladhamala.com/
 
-"Held":
-  - firstname: ["William", "Will", "William Barr"]
-    url: https://williamheld.com/
-
-"Shaikh":
-  - firstname: ["Omar"]
-    url: http://oshaikh.com/
+"Dwivedi-Yu":
+  - firstname: ["Jane"]
+    url: https://janedwivedi.github.io/
 
 "ElSherief":
   - firstname: ["Mai"]
     url: https://scholar.google.com/citations?user=Rykl2HkAAAAJ&hl=en
 
-"Harris":
-  - firstname: ["Camille"]
-    url: https://camille2019.github.io/
-
-"Chen":
-  - firstname: ["Jiaao"]
-    url: https://sites.cc.gatech.edu/~jchen896/
-
-"Wang":
-  - firstname: ["Yi-Chia"]
-    url: https://scholar.google.com/citations?user=9gMgFPQAAAAJ&hl=en
+"Gupta":
+  - firstname: ["Rahul"]
+    url: https://scholar.google.com/citations?user=1CFrm2YAAAAJ&hl=en
 
 "Halevy":
   - firstname: ["Alon"]
     url: https://homes.cs.washington.edu/~alon/
 
-"Yang": 
-  - firstname: ["Diyi"]
-    url: https://cs.stanford.edu/~diyiy/
+"Harris":
+  - firstname: ["Camille"]
+    url: https://camille2019.github.io/
 
-  - firstname: ["Jingfeng"]
-    url: https://jingfengyang.github.io/
+"Held":
+  - firstname: ["William", "Will", "William Barr"]
+    url: https://williamheld.com/
+
+"Kruk":
+  - firstname: ["Julia"]
+    url: https://scholar.google.com/citations?user=DOmg2LMAAAAJ&hl=en
+
+"Kumar":
+  - firstname: ["Srijan"]
+    url: https://www.cc.gatech.edu/~srijan/
 
 "Li":
   - firstname: ["Minzhi", "Ella"]
@@ -48,33 +49,25 @@
   - firstname: ["Other", "C. P. E."]
     url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
 
-"Yu":
-  - firstname: ["Jane"]
-    url: https://janedwivedi.github.io/
-
-"Dwivedi-Yu":
-  - firstname: ["Jane"]
-    url: https://janedwivedi.github.io/
+"Morstatter":
+  - firstname: ["Fred"]
+    url: https://isi.edu/~fredmors/
 
 "Muchlinski":
   - firstname: ["David"]
     url: https://www.davidmuchlinski.com/
 
-"De Choudhury":
-  - firstname: ["Munmun"]
-    url: http://www.munmund.net/
-
-"Kumar":
-  - firstname: ["Srijan"]
-    url: https://www.cc.gatech.edu/~srijan/
-
 "Ramakrishnan":
   - firstname: ["Naren"]
     url: https://people.cs.vt.edu/naren/
 
-"Morstatter":
-  - firstname: ["Fred"]
-    url: https://isi.edu/~fredmors/
+"Shaikh":
+  - firstname: ["Omar"]
+    url: http://oshaikh.com/
+
+"Shi":
+  - firstname: ["Taiwei"]
+    url: https://maksimstw.github.io/
 
 "Soni":
   - firstname: ["Sandeep"]
@@ -83,3 +76,18 @@
 "Vigfusson":
   - firstname: ["Ymir", "Ýmir"]
     url: https://ymsir.com/index.html
+
+"Wang":
+  - firstname: ["Yi-Chia"]
+    url: https://scholar.google.com/citations?user=9gMgFPQAAAAJ&hl=en
+
+"Yang": 
+  - firstname: ["Diyi"]
+    url: https://cs.stanford.edu/~diyiy/
+
+  - firstname: ["Jingfeng"]
+    url: https://jingfengyang.github.io/
+
+"Yu":
+  - firstname: ["Jane"]
+    url: https://janedwivedi.github.io/

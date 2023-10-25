@@ -5,3 +5,5 @@ github_repos:
   - SALT-NLP/positive-frames
   - SALT-NLP/implicit-hate
   - SALT-NLP/framing-police-violence
+  - SALT-NLP/CoAnnotating
+  - SALT-NLP/Impressions

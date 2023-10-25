@@ -7,6 +7,23 @@ nav: false
 nav_order:
 ---
 
+## [NormBank](https://drive.google.com/drive/folders/1XRhrzgG_R0zypPgPlCxK0nlqKbfaI9xe?usp=drive_link)
+##### *Why NormBank?* 
+`NormBank` is built to ground flexible normative reasoning for interactive, assistive, and collaborative AI systems. Unlike prior commonsense resources, `NormBank` grounds each inference within a multivalent sociocultural frame, which includes the setting (e.g., restaurant), the agents’ contingent roles (waiter, customer), their attributes (age, gender), and other physical, social, and cultural constraints (e.g., the temperature or the country of operation).
+
+##### *What's 'in the box?'* 
+Constraints apply in different combinations to frame social norms. Under these manipulations, norms are non-monotonic — one can cancel an inference by updating its frame even slightly.
+
+In total, `NormBank` contains 63k unique constraints from a taxonomy that includes the Setting (i.e., the loci of scripted social interactions, such as banks, classrooms, homes, hospitals) as well as...
+
+* ![26%](https://progress-bar.dev/26) **Roles:** setting-specific clusters of identity and responsibility (e.g., customer, server)
+* ![36%](https://progress-bar.dev/36) **Attributes:** properties of individual agents that determine their social norms (e.g., age, gender)
+* ![16%](https://progress-bar.dev/16) **Environmental Factors:** physical and situational signals that can trigger associative priming of social norms (e.g., time, country of origin, noise level, safety, privacy, cleanliness)
+* ![16%](https://progress-bar.dev/16) **Behaviors:** the primary target of analysis for social norms(e.g., drinking alcohol, going on a date)
+
+##### *What can I do with this data?* 
+`NormBank` is not designed for any particular narrow task; it is designed as a general-purpose knowledge resource that can ground social reasoning through downstream tasks. First, social scientists and engineers can NormBank as a static reference for discrete knowledge access about social norms that can inform downstream studies and design choices. Second, NLP researchers can use it to ground challenging NLP benchmark tasks. Third and most importantly, machine learning teams can incorporate `NormBank` into pre-training data for better transfer learning and downstream performance on social reasoning tasks.
+
 
 ## 🤗 [Implicit Hate](https://huggingface.co/datasets/SALT-NLP/ImplicitHate)
 ##### *Why Implicit Hate?* 
