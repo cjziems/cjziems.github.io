@@ -1,7 +1,25 @@
 ---
 ---
 
-@article{li2023coannotating,
+@article{ziems2023css,
+  bibtex_show={true},
+  title={Can Large Language Models Transform Computational Social Science?},
+  author={Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi},
+  year={2023},
+  month=dec,
+  arxiv={2305.03514},
+  preview={css_chatgpt.png},
+  journal={Computational linguistics},
+  volume={49},
+  number={4},
+  abbr={CL},
+  publisher={MIT Press},
+  abstract = "Large Language Models (LLMs) like ChatGPT are capable of successfully performing many language processing tasks zero-shot (without the need for training data). If this capacity also applies to the coding of social phenomena like persuasiveness and political ideology, then LLMs could effectively transform Computational Social Science (CSS). This work provides a road map for using LLMs as CSS tools. Towards this end, we contribute a set of prompting best practices and an extensive evaluation pipeline to measure the zero-shot performance of 13 language models on 24 representative CSS benchmarks. On taxonomic labeling tasks (classification), LLMs fail to outperform the best fine-tuned models but still achieve fair levels of agreement with humans. On freeform coding tasks (generation), LLMs produce explanations that often exceed the quality of crowdworkers’ gold references. We conclude that today’s LLMs can radically augment the CSS research pipeline in two ways: (1) serving as zero-shot data annotators on human annotation teams, and (2) bootstrapping challenging creative generation tasks (e.g., explaining the hidden meaning behind text). In summary, LLMs can significantly reduce costs and increase efficiency of social science analysis in partnership with humans.",
+  code={https://github.com/SALT-NLP/LLMs_for_CSS},
+  selected={true}
+}
+
+@inproceedings{li2023coannotating,
   bibtex_show={true},
   title={CoAnnotating: Uncertainty-Guided Work Allocation between Human and Large Language Models for Data Annotation},
   author={Li, Minzhi and Shi, Taiwei and Ziems, Caleb and Kan, Min-Yen and Chen, Nancy F. and Liu, Zhengyuan and Yang, Diyi},
@@ -12,12 +30,13 @@
     publisher = "Association for Computational Linguistics",
   arxiv={2310.15638},
   preview={co_annotating.png},
+  abbr={EMNLP},
   abstract = "Annotated data plays a critical role in Natural Language Processing (NLP) in training models and evaluating their performance. Given recent developments in Large Language Models (LLMs), models such as ChatGPT demonstrate zero-shot capability on many text-annotation tasks, comparable with or even exceeding human annotators. Such LLMs can serve as alternatives for manual annotation, due to lower costs and higher scalability. However, limited work has leveraged LLMs as complementary annotators, nor explored how annotation work is best allocated among humans and LLMs to achieve both quality and cost objectives. We propose CoAnnotating, a novel paradigm for Human-LLM co-annotation of unstructured texts at scale. Under this framework, we utilize uncertainty to estimate LLMs' annotation capability. Our empirical study shows CoAnnotating to be an effective means to allocate work from results on different datasets, with up to 21% performance improvement over random baseline.",
   code={https://github.com/SALT-NLP/CoAnnotating},
   selected={false}
 }
 
-@article{kruk2023impressions,
+@inproceedings{kruk2023impressions,
   bibtex_show={true},
   title={Impressions: Understanding Visual Semiotics and Aesthetic Impact},
   author={Kruk, Julia and Ziems, Caleb and Yang, Diyi},
@@ -27,27 +46,13 @@
     address = "Singapore",
     publisher = "Association for Computational Linguistics",
   preview={impressions.png},
+  abbr={EMNLP},
   abstract = "Is aesthetic impact different from beauty? Is visual salience a reflection of its capacity for effective communication? We present Impressions, a novel dataset through which to investigate the semiotics of images, and how specific visual features and design choices can elicit specific emotions, thoughts and beliefs. We posit that the impactfulness of an image extends beyond formal definitions of aesthetics, to its success as a communicative act, where style contributes as much to meaning formation as the subject matter. However, prior image captioning datasets are not designed to empower state-of-the-art architectures to model potential human impressions or interpretations of images. To fill this gap, we design an annotation task heavily inspired by image analysis techniques in the Visual Arts to collect 1,440 image-caption pairs and 4,320 unique annotations exploring impact, pragmatic image description, impressions, and aesthetic design choices. We show that existing multimodal image captioning and conditional generation models struggle to simulate plausible human responses to images. However, this dataset significantly improves their ability to model impressions and aesthetic evaluations of images through fine-tuning and few-shot adaptation.",
   code={https://github.com/SALT-NLP/Impressions},
   selected={false}
 }
 
-
-@article{ziems2023css,
-  bibtex_show={true},
-  title={Can Large Language Models Transform Computational Social Science?},
-  author={Ziems, Caleb and Held, William and Shaikh, Omar and Chen, Jiaao and Zhang, Zhehao and Yang, Diyi},
-  journal={arXiv preprint arXiv:2305.03514},
-  year={2023},
-  month=april,
-  arxiv={2305.03514},
-  preview={css_chatgpt.png},
-  abstract = "Large Language Models (LLMs) like ChatGPT are capable of successfully performing many language processing tasks zero-shot (without the need for training data). If this capacity also applies to the coding of social phenomena like persuasiveness and political ideology, then LLMs could effectively transform Computational Social Science (CSS). This work provides a road map for using LLMs as CSS tools. Towards this end, we contribute a set of prompting best practices and an extensive evaluation pipeline to measure the zero-shot performance of 13 language models on 24 representative CSS benchmarks. On taxonomic labeling tasks (classification), LLMs fail to outperform the best fine-tuned models but still achieve fair levels of agreement with humans. On freeform coding tasks (generation), LLMs produce explanations that often exceed the quality of crowdworkers’ gold references. We conclude that today’s LLMs can radically augment the CSS research pipeline in two ways: (1) serving as zero-shot data annotators on human annotation teams, and (2) bootstrapping challenging creative generation tasks (e.g., explaining the hidden meaning behind text). In summary, LLMs can significantly reduce costs and increase efficiency of social science analysis in partnership with humans.",
-  code={https://github.com/SALT-NLP/LLMs_for_CSS},
-  selected={true}
-}
-
-@article{ziems2023multi,
+@inproceedings{ziems2023multi,
   bibtex_show={true},
   title={Multi-VALUE: A Framework for Cross-Dialectal English NLP},
   author={Ziems, Caleb and Held, William and Yang, Jingfeng and Dhamala, Jwala and Gupta, Rahul and Yang, Diyi},
@@ -68,7 +73,7 @@
   selected={true}
 }
 
-@article{ziems2023norm,
+@inproceedings{ziems2023norm,
   bibtex_show={true},
   title={NormBank: A Knowledge Bank of Situational Social Norms},
   author={Ziems, Caleb, and Dwivedi-Yu, Jane and Wang, Yi-Chia and Halevy, Alon and Yang, Diyi},
@@ -88,7 +93,7 @@
   selected={true}
 }
 
-@article{held2023tada,
+@inproceedings{held2023tada,
   bibtex_show={true},
   title={TADA: Task-Agnostic Dialect Adapters for English},
   author={Held, William and Ziems, Caleb, and Yang, Diyi},
@@ -105,7 +110,7 @@
   code={https://github.com/Helw150/tada},
 }
 
-@article{shaikh2023modeling,
+@inproceedings{shaikh2023modeling,
   bibtex_show={true},
   title={Modeling Cross-Cultural Pragmatic Inference with Codenames Duet},
   author={Shaikh, Omar and Ziems, Caleb, and Held, William and Pariani, Aryan J. and Morstatter, Fred and Yang, Diyi},
@@ -274,5 +279,6 @@ Cultural Codes is based on the multi-turn collaborative two-player game, Codenam
   arxiv={2004.01820},
   slides={slides/cyberbullying-representations-slides.pdf},
   code={https://github.com/cjziems/cyberbullying-representations},
-  note={<i class="fas fa-award"></i> <b>Best Paper Honorable Mention</b>}
+  note={<i class="fas fa-award"></i> <b>Best Paper Honorable Mention</b>},
+  preview={cyberbullying.png}
 }

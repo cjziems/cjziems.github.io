@@ -132,7 +132,22 @@
         <div class="periodical">
           {{ entry.note | strip }}
         </div>
-
+        <!-- Abbr Badge -->
+        {%- if entry.abbr -%}
+          {%- if site.data.venues[entry.abbr] -%}
+            {%- assign venue_style = nil -%}
+            {%- if site.data.venues[entry.abbr].color != blank -%}
+              {%- assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' -%}
+            {%- endif -%}
+            <div class="abbr">
+              <abbr class="badge" {% if venue_style %}{{venue_style}}{% endif %}><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
+            </div>
+          {%- else -%}
+            <div class="abbr">
+              <abbr class="badge">{{entry.abbr}}</abbr>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
           <!-- Links/Buttons -->
           <div class="links">
           {%- if entry.abstract %}
