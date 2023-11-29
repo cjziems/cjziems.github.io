@@ -1,9 +1,14 @@
 github_repos:
+  - SALT-NLP/positive-frames
   - SALT-NLP/LLMs_for_CSS
   - SALT-NLP/multi-value
+  - SALT-NLP/normbank
+  - SALT-NLP/codenames
   - SALT-NLP/mic
-  - SALT-NLP/positive-frames
+  
   - SALT-NLP/implicit-hate
   - SALT-NLP/framing-police-violence
+  - Helw150/tada
   - SALT-NLP/CoAnnotating
   - SALT-NLP/Impressions
+  - cjziems/cyberbullying-representations
