@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Multi-VALUE: A Framework for Cross-Dialectal English NLP">
+  <meta name="keywords" content="Dialect, Dialect Adaptation, Linguistic Diversity, Fairness, Human-Centered NLP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-VALUE: A Framework for Cross-Dialectal English NLP</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    table.customTable {
+      width: 50%;
+      background-color: #FFFFFF;
+      border-collapse: collapse;
+      border-width: 2px;
+      border-color: rgb(214, 236, 244);
+      border-style: solid;
+      color: #000000;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    table.customTable td {
+      border-width: 2px;
+      border-color: rgb(214, 236, 244);
+      border-style: solid;
+      padding: 5px;
+      text-align: center; 
+      vertical-align: middle;
+    }
+
+    table.customTable th {
+      border-width: 2px;
+      border-color: rgb(214, 236, 244);
+      border-style: solid;
+      padding: 5px;
+    }
+    
+    table.customTable thead {
+      background-color: rgb(214, 236, 244);
+    }
+
+    .specialtext {
+        color: #2F5596; /* mydarkblue */
+        font-family: monospace;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Multi-VALUE: A Framework for Cross-Dialectal English NLP</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://calebziems.com/">Caleb Ziems</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://williamheld.com/">William Held</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://jingfengyang.github.io/">Jingfeng Yang</a><sup>3</sup>,</span>  
+            <span class="author-block">
+              <a href="https://jwaladhamala.com/">Jwala Dhamala</a><sup>3</sup>,</span>  
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=1CFrm2YAAAAJ&hl=en">Rahul Gupta</a><sup>3</sup>,</span>  
+            <span class="author-block">
+              <a href="https://cs.stanford.edu/~diyiy/">Diyi Yang</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Stanford University,</span>
+            <span class="author-block"><sup>2</sup>Georgia Institute of Technology,</span>
+            <span class="author-block"><sup>3</sup>Amazon</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <img src="./static/images/stanford-university-logo-2.png" width="200" align="absmiddle"/>  
+            </span>
+            <span class="author-block">
+              <img src="./static/images/GeorgiaTech_RGB.png" width="200" align="absmiddle"/>  
+            </span>
+            <span class="author-block">
+              <img src="https://images.crowdspring.com/blog/wp-content/uploads/2023/07/03162944/amazon-logo-1.png" width="180" align="absmiddle"/>  
+            </span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2212.08011.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2212.08011"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/SALT-NLP/multi-value"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image-container" style="margin: auto">
+        <img src="./static/images/pipeline.png"
+             class="summary-image"
+             alt="Multi-VALUE"
+             style="width: 100%; ">
+        <figcaption class="image-caption" style="text-align: center">
+          Multi-VALUE is a suite of resources for evaluating and achieving English dialect invariance. It contains tools for systematically modifying written text in accordance with 189 attested linguistic patterns from 50 varieties of English. Researchers can use this to build dialect stress tests and train more robust models for their task using data augmentation.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+           
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Dialect differences caused by regional, social, and economic factors cause performance discrepancies for many groups of language technology users. Inclusive and equitable language technology must critically be dialect invariant, meaning that performance remains constant over dialectal shifts. Current systems often fall short of this ideal since they are designed and tested on a single dialect: Standard American English (SAE). We introduce a suite of resources for evaluating and achieving English dialect invariance. The resource is called Multi-VALUE, a controllable rule-based translation system spanning 50 English dialects and 189 unique linguistic features. Multi-VALUE maps SAE to synthetic forms of each dialect. First, we use this system to stress tests question answering, machine translation, and semantic parsing. Stress tests reveal significant performance disparities for leading models on non-standard dialects. Second, we use this system as a data augmentation technique to improve the dialect robustness of existing systems. Finally, we partner with native speakers of Chicano and Indian English to release new gold-standard variants of the popular CoQA task.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Background Motivation</h2>
+          <p>
+            All of natural language follows a grammar, or a systematic set of rules for how to interpret words, combine them into phrases, and combine phrases into sentences. If we didn’t have this kind of regularity, it would be impossible to communicate. At the same time, language varies by speaker and by group, and these variations are known as dialects.
+          </p>
+          <div class="image-section" style="text-align: center;">
+              <img src="./static/images/bias_background.png" alt="bias" style="max-width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+          </div>
+          <p>
+            Language technologies are known to underperform for certain dialects like African American Vernacular English (Ziems et al. 2022). This motivates our work. Unless our technologies are built intentionally to handle these dialects, they could be significantly underperforming for a massive portion of the English-speaking world. Our research takes this as a huge opportunity to support language variation and increase the global capacities of language technologies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Proposed Solution</h2>
+          <p>
+            Decades of linguistics research systematically describes dialects in terms of their features. We operationalized 189 well-documented English dialect features into text <span class="specialtext">perturbation rules</span> that inject these grammatical structures into a non-dialectal sentence. This will allow users to build multi-dialectal training and testing data for any task. We validate our Multi-VALUE tool by asking native speakers of 10 English Dialects to judge the grammaticality of 19k translations, and we find that our system is highly reliable: over 80% of our rules have over 95% accuracy. But for even more reliable test evaluations, we built gold standard benchmarks for a Conversational Question Answering Task in two widely-spoken varieties: Chicano and Indian English. Finally, we stress test NLP systems against dialect-variants of a range of tasks, revealing significant drops in performance, which we can successfully address with Multi-VALUE as a data augmentation tool.
+            <!-- <ul>
+              <li><b>Rule-based Translation:</b> inject 189 dialect features into text
+                <ul>
+                    <li>↪ <b>Stress Tests:</b> scale up empirical understanding to 50 English dialects</li>
+                    <li>↪ <b>Augmented Training:</b> close performance gaps for low-resourced dialects</li>
+                </ul>
+              </li>
+              <li><b>Gold Standard Benchmarks:</b> Chicano + Indian English CoQA</li>
+              <li><b>Dialect-Robust Models:</b> hosted on huggingface hub</li>
+            </ul> -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Perturbation Rules</h2>
+          <p>
+
+            <div class="image-section" style="text-align: center;">
+              <img src="./static/images/perturbations.png" alt="perturbation" style="max-width: 50%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+            </div>
+            For each rule, we condition the perturbation on morphosyntactic signals from POS tags, noun and verb inflection, and dependency relations using spaCy. For the pertubation above, we search for passive constructions with a past participle root (VBN), an <em>nsubjpass</em> patient, and an agent. We construct the new phrase by inflecting the root verb to its base (VB) form and moving it after the entire agentive noun phrase. In total, we build 189 perturbations spanning 50 English dialects and 12 grammatical categories: (1) Pronouns, (2) Noun Phrases, (3) Tense and Aspect, (4) Mood, (5) Verb Morphology, (6) Negation, (7) Agreement, (8) Relativization, (9) Complementation, (10) Adverbial Subordination, (11) Adverbs and Prepositions, and finally (12) Discourse and Word Order.
+          </p>
+
+          <div class="image-section" style="text-align: center;">
+              <img src="./static/images/accuracy.png" alt="accuracy" style="max-width: 20%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+          </div>
+
+          <p>
+            Next, our validation goal was to confirm that our rules are aligned with real speakers’ grammars. We recruited a group of 72 annotators evaluate 92 rules operating within a total of 19k sentence-level dialect "translations." There are 55 rules with perfect accuracy, and all perturbation rules achieve above 81%, so we are confident in the Multi-VALUE transformation pipeline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Stress Tests</h2>
+          <p>
+            Next, we use Multi-VALUE to stress-test systems for three dialectal tasks: question answering, semantic parsing, and machine translation. We can focus on the Conversational QA task, but the results reflect the Semantic Parsing and Machine Translation results too.
+          </p>
+
+          <p>
+          CoQA is a reading comprehension benchmark where questions are conversational — in response to answers, they have follow-up questions. Baseline CoQA performance from a RoBERTa-base model is 81.1 F1. Chicano English leads to an insignificant drop, but Appalachian English drops by 3.4%, and Urban African American English drops 6.7%, while Indian English drops 7.5%. The largest performance drop is in Colloquial Singapore English, with a score of 68.8, or 18.9% worse than the Standard model. Overall, these large and statistically significant performance gaps show the pervasiveness of English dialect disparity.
+          </p>
+
+          <div class="image-section" style="text-align: center;">
+              <img src="./static/images/coqa_results.png" alt="coqa results" style="max-width: 70%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+          </div>
+
+          <p>
+            Qualitative analysis shows that dialectal errors can cascade down the conversation, leading to model failures on later unperturbed questions as well. In some cases, the transformations cause the model to respond with the wrong class of answer, like giving a noun phrase or a prepositional phrase for a simple yes/no question. Finally, we see that some of the biggest drops, like with Colloquial Singapore English, can be largely due to a handful of especially challenging features that show up in this dialect. Future work can quantitatively measure the correlations between errors and the presence of certain features across a variety of tasks.
+          </p>
+
+          <div class="image-section" style="text-align: center;">
+              <img src="./static/images/coqa_improvement.png" alt="coqa improvement" style="max-width: 55%; height: auto; display: block; margin-left: auto; margin-right: auto; margin-bottom: 20px;">
+          </div>
+
+          <p>
+            Fine-tuning on synthetic in-dialectal training data can help close the performance gap, adding performance boosts of up to 11.4% F1, and reaching near parity with the standard model.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Advantages</h2>
+          <p>
+            There are four key advantages in our approach to dialect-aware NLP, and our decision to benchmark these tasks through feature-based transformations.
+            <ol>
+              <li><b>Interpretable:</b> Our rules are not black-box. We have citations to the linguistics literature, and we can easily source our rules back to specific features and trace their effects, interpreting the impact of particular attributes and structures on model performance. </li>
+              <li><b>Flexible:</b> We can easily adjust the density of certain features by simply turning features on and off, or adding some stochastic behavior. This means we can customize Multi-VALUE to align with new and evolving dialects by adjusting the density of dialectal features, unlike with fixed or static datasets annotated by humans. </li>
+              <li><b>Scalable:</b> We can easily transform new datasets and expand our analysis to a wide range of NLP tasks without the need for costly human annotation. This is critical, because both language and the state of NLP are constantly evolving and being updated. </li>
+              <li><b>Responsible:</b> Our approach is vetted by native speakers to ensure gold standards and synthetic data are dependable for ongoing research. </li>
+              <li><b>Generalizable:</b> Multi-VALUE can move the field beyond single-dialect evaluation, which will allow researchers to draw more transferable findings about cross-dialectal NLP performance.</li>
+            </ol>
+            Overall, we anticipate that Multi-VALUE will continue to support the development of more fair and equitable language technologies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Limitations and Ethical Considerations</h2>
+          <p>
+            We should also discuss the limitations inherent to our approach. First, the scope of this work is on grammatical variation. We don’t cover differences in the vocabulary, which is called lexical variation. This is because lexical variation isn’t very well described by systematic, scalable, and generalizable rules. Future work can derive lexical distributions from data, but this can also be a pretty big challenge, since low-resource dialects lack the corpus data to support this. Relatedly, Multi-VALUE covers only the variation that linguists have observed frequently enough to document, and in the canonical forms in which they document them. This means we will not fully capture the variation within each dialect. Dialects don’t always fit into nicely prescribed categories. Second, we should recognize that our features our based on linguistics field work, which focuses on speech. Speech does not always perfectly map to written forms, so certain examples may appear unnatural. We release all of our tools responsibly, ensuring that users sign a carefully worded Data Use Agreement that includes these limitations and forbids the use of Multi-VALUE for any inappropriate uses, including targeted harassment and cultural appropriation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+@inproceedings{ziems-etal-2023-multi,
+    title = "Multi-{VALUE}: A Framework for Cross-Dialectal {E}nglish {NLP}",
+    author = "Ziems, Caleb  and
+      Held, William  and
+      Yang, Jingfeng  and
+      Dhamala, Jwala  and
+      Gupta, Rahul  and
+      Yang, Diyi",
+    editor = "Rogers, Anna  and
+      Boyd-Graber, Jordan  and
+      Okazaki, Naoaki",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.44",
+    doi = "10.18653/v1/2023.acl-long.44",
+    pages = "744--768"
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This source code of this website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
