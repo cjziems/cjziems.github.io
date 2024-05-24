@@ -1,6 +1,13 @@
+"Bernstein":
+  - firstname: ["Michael S.", "Michael"]
+    url: https://hci.stanford.edu/msb/
+
 "Chen":
   - firstname: ["Jiaao"]
     url: https://cs.stanford.edu/people/jiaaoc/
+
+  - firstname: ["Nancy F."]
+    url: https://sites.google.com/site/nancyfchen/home
 
 "De Choudhury":
   - firstname: ["Munmun"]
@@ -42,12 +49,24 @@
   - firstname: ["Srijan"]
     url: https://www.cc.gatech.edu/~srijan/
 
+"Kan":
+  - firstname: ["Min-Yen"]
+    url: https://www.comp.nus.edu.sg/~kanmy/
+
 "Li":
   - firstname: ["Minzhi", "Ella"]
     url: https://scholar.google.com/citations?user=HsigY9MAAAAJ&hl=en
 
   - firstname: ["Other", "C. P. E."]
     url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+
+"Liu":
+  - firstname: ["Zhengyuan"]
+    url: https://scholar.google.com.sg/citations?user=tqzidGsAAAAJ&hl=en
+
+"Magu":
+  - firstname: ["Rijul"]
+    url: https://scholar.google.com/citations?user=YHkIE44AAAAJ&hl=en
 
 "Morstatter":
   - firstname: ["Fred"]
@@ -68,6 +87,9 @@
 "Shi":
   - firstname: ["Taiwei"]
     url: https://maksimstw.github.io/
+
+  - firstname: ["Weiyan"]
+    url: https://wyshi.github.io/
 
 "Soni":
   - firstname: ["Sandeep"]
@@ -91,3 +113,7 @@
 "Yu":
   - firstname: ["Jane"]
     url: https://janedwivedi.github.io/
+
+"Zhang":
+  - firstname: ["Zhehao"]
+    url: https://zzh-sjtu.github.io/zhehaozhang.github.io/

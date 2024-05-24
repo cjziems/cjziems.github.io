@@ -1,6 +1,52 @@
 ---
 ---
 
+@inproceedings{ziems2024pair,
+  bibtex_show={true},
+  title={Measuring and Addressing Indexical Bias in Information Retrieval},
+  author={Ziems, Caleb and Held, William and Dwivedi-Yu, Jane and Yang, Diyi},
+  booktitle = "Findings of the Association for Computational Linguistics: ACL 2024",
+  year = "2024",
+  month = aug,
+  address = "Bangkok, Thailand",
+  publisher = "Association for Computational Linguistics",
+  abbr={ACL},
+  preview={pair_crown_jewel.png},
+  abstract = "Information Retrieval (IR) systems are designed to deliver relevant content, but traditional systems may not optimize rankings for fairness, neutrality, or the balance of ideas. Consequently, IR can often introduce indexical biases, or biases in the positional order of documents. Although indexical bias can demonstrably affect people's opinion, voting patterns, and other behaviors, these issues remain understudied as the field lacks reliable metrics and procedures for automatically measuring indexical bias. Towards this end, we introduce the PAIR framework, which supports automatic bias audits for ranked documents or entire IR systems. After introducing DUo-P, the first general-purpose automatic bias metric, we run an extensive evaluation of 8 IR systems on a new corpus of 32k synthetic and 4.6k natural documents, with 4k queries spanning 1.4k controversial issue topics. A human behavioral study validates our approach, showing that our bias metric can help predict when and how indexical bias will shift a reader's opinion.",
+  selected={false}
+}
+
+@inproceedings{li2024socialAIinfra,
+  bibtex_show={true},
+  title={Social Intelligence Data Infrastructure: Structuring the Present and Navigating the Future},
+  author={Li, Minzhi and Shi, Weiyan and Ziems, Caleb and Yang, Diyi},
+  booktitle = "Findings of the Association for Computational Linguistics: ACL 2024",
+  arxiv={2403.14659},
+  year = "2024",
+  month = aug,
+  address = "Bangkok, Thailand",
+  publisher = "Association for Computational Linguistics",
+  abbr={ACL},
+  preview={social_infra_crown_jewel.png},
+  abstract = "As Natural Language Processing (NLP) systems become increasingly integrated into human social life, these technologies will need to increasingly rely on social intelligence. Although there are many valuable datasets that benchmark isolated dimensions of social intelligence, there does not yet exist any body of work to join these threads into a cohesive subfield in which researchers can quickly identify research gaps and future directions. Towards this goal, we build a Social AI Data Infrastructure, which consists of a comprehensive social AI taxonomy and a data library of 480 NLP datasets. Our infrastructure allows us to analyze existing dataset efforts, and also evaluate language models' performance in different social intelligence aspects. Our analyses demonstrate its utility in enabling a thorough understanding of current data landscape and providing a holistic perspective on potential directions for future dataset development. We show there is a need for multifaceted datasets, increased diversity in language and culture, more long-tailed social situations, and more interactive data in future social intelligence data efforts.",
+  selected={false}
+}
+
+@inproceedings{kruk2024silentsignals,
+  bibtex_show={true},
+  title={Silent Signals, Loud Impact: LLMs for Word-Sense Disambiguation of Coded Dog Whistles},
+  author={Kruk, Julia and Marchini, Michela and Magu, Rijul and Ziems, Caleb and Muchlinski, David and Yang, Diyi},
+  booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+  year = "2024",
+  month = aug,
+  address = "Bangkok, Thailand",
+  publisher = "Association for Computational Linguistics",
+  abbr={ACL},
+  preview={silent_signals.png},
+  abstract = "A dog whistle is a form of coded communication with a secondary meaning that is often weaponized for racial discrimination. Dog whistles historically began in United States politics, but soon also took root in social media as a means of evading hate speech detection systems and maintaining plausible deniability. In this paper, we present an approach for word-sense disambiguation of dog whistles from standard speech using Large Language Models (LLMs), and leverage this technique to create a dataset of 11,570 high-confidence coded examples of dog whistles used in formal and informal communication. Silent Signals is the largest dataset of disambiguated dog whistle usage, created for applications in hate speech detection, neology, and political science.",
+  selected={false}
+}
+
 @article{ziems2024css,
   bibtex_show={true},
   title={Can Large Language Models Transform Computational Social Science?},
@@ -16,6 +62,8 @@
   publisher={MIT Press},
   abstract = "Large Language Models (LLMs) are capable of successfully performing many language processing tasks zero-shot (without training data). If zero-shot LLMs can also reliably classify and explain social phenomena like persuasiveness and political ideology, then LLMs could augment the Computational Social Science (CSS) pipeline in important ways. This work provides a road map for using LLMs as CSS tools. Towards this end, we contribute a set of prompting best practices and an extensive evaluation pipeline to measure the zero-shot performance of 13 language models on 25 representative English CSS benchmarks. On taxonomic labeling tasks (classification), LLMs fail to outperform the best fine-tuned models but still achieve fair levels of agreement with humans. On free-form coding tasks (generation), LLMs produce explanations that often exceed the quality of crowdworkers' gold references. We conclude that the performance of today's LLMs can augment the CSS research pipeline in two ways: (1) serving as zero-shot data annotators on human annotation teams, and (2) bootstrapping challenging creative generation tasks (e.g., explaining the underlying attributes of a text). In summary, LLMs are posed to meaningfully participate in social science analysis in partnership with humans.",
   code={https://github.com/SALT-NLP/LLMs_for_CSS},
+  poster={posters/llms-css-poster-a0.pdf},
+  slides={slides/llms_css.pdf},
   selected={true}
 }
 
