@@ -72,7 +72,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 github_username: cjziems # your GitHub user name
 gitlab_username: # your GitLab user name
 twitter_username: cjziems # your Twitter handle
-mastodon_username: fediscience.org/@caleb_ziems # your mastodon instance+username in the format instance.tld/@username
+mastodon_username: # fediscience.org/@caleb_ziems # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: Hm4XL1AAAAAJ # your Google Scholar ID

@@ -1,21 +1,29 @@
 ---
 ---
 
+
 @inproceedings{ziems2024pair,
   bibtex_show={true},
   title={Measuring and Addressing Indexical Bias in Information Retrieval},
   author={Ziems, Caleb and Held, William and Dwivedi-Yu, Jane and Yang, Diyi},
-  booktitle = "Findings of the Association for Computational Linguistics: ACL 2024",
-  year = "2024",
+  editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+  booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
   month = aug,
-  address = "Bangkok, Thailand",
+  year = "2024",
+  address = "Bangkok, Thailand and virtual meeting",
   publisher = "Association for Computational Linguistics",
+  html = "https://aclanthology.org/2024.findings-acl.763",
+  pages = "12860--12877",
   abbr={ACL},
   preview={pair_crown_jewel.png},
   arxiv={2406.04298},
-  abstract = "Information Retrieval (IR) systems are designed to deliver relevant content, but traditional systems may not optimize rankings for fairness, neutrality, or the balance of ideas. Consequently, IR can often introduce indexical biases, or biases in the positional order of documents. Although indexical bias can demonstrably affect people's opinion, voting patterns, and other behaviors, these issues remain understudied as the field lacks reliable metrics and procedures for automatically measuring indexical bias. Towards this end, we introduce the PAIR framework, which supports automatic bias audits for ranked documents or entire IR systems. After introducing DUo-P, the first general-purpose automatic bias metric, we run an extensive evaluation of 8 IR systems on a new corpus of 32k synthetic and 4.6k natural documents, with 4k queries spanning 1.4k controversial issue topics. A human behavioral study validates our approach, showing that our bias metric can help predict when and how indexical bias will shift a reader's opinion.",
+  abstract = "Information Retrieval (IR) systems are designed to deliver relevant content, but traditional systems may not optimize rankings for fairness, neutrality, or the balance of ideas. Consequently, IR can often introduce indexical biases, or biases in the positional order of documents. Although indexical bias can demonstrably affect people{'}s opinion, voting patterns, and other behaviors, these issues remain understudied as the field lacks reliable metrics and procedures for automatically measuring indexical bias. Towards this end, we introduce the PAIR framework, which supports automatic bias audits for ranked documents or entire IR systems. After introducing DUO, the first general-purpose automatic bias metric, we run an extensive evaluation of 8 IR systems on a new corpus of 32k synthetic and 4.7k natural documents, with 4k queries spanning 1.4k controversial issue topics. A human behavioral study validates our approach, showing that our bias metric can help predict when and how indexical bias will shift a reader{'}s opinion.",
   code={https://github.com/SALT-NLP/pair},
-  selected={false}
+  selected={false},
+  poster={posters/pair-poster-a0.pdf},
+  slides={slides/pair.pdf},
 }
 
 @inproceedings{li2024socialAIinfra,
@@ -30,6 +38,10 @@
   publisher = "Association for Computational Linguistics",
   abbr={ACL},
   preview={social_infra_crown_jewel.png},
+  html="https://aclanthology.org/2024.findings-acl.163",
+  code={https://github.com/SALT-NLP/Social-Intelligence-Data-Infrastructure},
+  website={https://salt-nlp.github.io/Social-Intelligence-Data-Infrastructure/},
+  poster={posters/social-ai-poster-a0.pdf},
   abstract = "As Natural Language Processing (NLP) systems become increasingly integrated into human social life, these technologies will need to increasingly rely on social intelligence. Although there are many valuable datasets that benchmark isolated dimensions of social intelligence, there does not yet exist any body of work to join these threads into a cohesive subfield in which researchers can quickly identify research gaps and future directions. Towards this goal, we build a Social AI Data Infrastructure, which consists of a comprehensive social AI taxonomy and a data library of 480 NLP datasets. Our infrastructure allows us to analyze existing dataset efforts, and also evaluate language models' performance in different social intelligence aspects. Our analyses demonstrate its utility in enabling a thorough understanding of current data landscape and providing a holistic perspective on potential directions for future dataset development. We show there is a need for multifaceted datasets, increased diversity in language and culture, more long-tailed social situations, and more interactive data in future social intelligence data efforts.",
   selected={false}
 }
@@ -45,9 +57,12 @@
   publisher = "Association for Computational Linguistics",
   abbr={ACL},
   arxiv={2406.06840},
+  html="https://aclanthology.org/2024.acl-long.675",
+  code={https://huggingface.co/datasets/SALT-NLP/silent_signals},
   preview={silent_signals.png},
   abstract = "A dog whistle is a form of coded communication with a secondary meaning that is often weaponized for racial discrimination. Dog whistles historically began in United States politics, but soon also took root in social media as a means of evading hate speech detection systems and maintaining plausible deniability. In this paper, we present an approach for word-sense disambiguation of dog whistles from standard speech using Large Language Models (LLMs), and leverage this technique to create a dataset of 11,570 high-confidence coded examples of dog whistles used in formal and informal communication. Silent Signals is the largest dataset of disambiguated dog whistle usage, created for applications in hate speech detection, neology, and political science.",
-  selected={false}
+  selected={false},
+  poster={posters/silent-signals-poster-a0.pdf},
 }
 
 @article{ziems2024css,
