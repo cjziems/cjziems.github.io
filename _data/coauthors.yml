@@ -25,6 +25,14 @@
   - firstname: ["Mai"]
     url: https://scholar.google.com/citations?user=Rykl2HkAAAAJ&hl=en
 
+"Goldberg":
+  - firstname: ["Amir"]
+    url: https://web.stanford.edu/~amirgo/
+
+"Grusky":
+  - firstname: ["David"]
+    url: https://grusky.people.stanford.edu/
+
 "Gupta":
   - firstname: ["Rahul"]
     url: https://scholar.google.com/citations?user=1CFrm2YAAAAJ&hl=en
@@ -115,5 +123,12 @@
     url: https://janedwivedi.github.io/
 
 "Zhang":
+  - firstname: ["Yanzhe"]
+    url: https://stevenyzzhang.github.io/website/
+    
   - firstname: ["Zhehao"]
     url: https://zzh-sjtu.github.io/zhehaozhang.github.io/
+
+"Zhu":
+  - firstname: ["Hao"]
+    url: https://hao.computer/

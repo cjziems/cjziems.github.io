@@ -1,6 +1,70 @@
 ---
 ---
 
+@inproceedings{ziems-etal-2025-culture,
+    bibtex_show={true},
+    title = "Culture Cartography: Mapping the Landscape of Cultural Knowledge",
+    author = "Ziems, Caleb  and
+      Held, William Barr  and
+      Yu, Jane  and
+      Goldberg, Amir  and
+      Grusky, David  and
+      Yang, Diyi",
+    editor = "Christodoulopoulos, Christos  and
+      Chakraborty, Tanmoy  and
+      Rose, Carolyn  and
+      Peng, Violet",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2025",
+    abbr={EMNLP},
+    preview={culturecartography.png},
+    arxiv={2510.27672},
+    slides={slides/cartography.pdf},
+    poster={posters/culture-cartography-poster-a0.pdf},
+    code={https://github.com/SALT-NLP/culture-cartography},
+    selected={true},
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    html = "https://aclanthology.org/2025.emnlp-main.91/",
+    doi = "10.18653/v1/2025.emnlp-main.91",
+    pages = "1739--1757",
+    ISBN = "979-8-89176-332-6",
+    abstract = "To serve global users safely and productively, LLMs need culture-specific knowledge that might not be learned during pre-training. How do we find knowledge that is (1) salient to in-group users, but (2) unknown to LLMs? The most common solutions are single-initiative: either researchers define challenging questions that users passively answer (traditional annotation), or users actively produce data that researchers structure as benchmarks (knowledge extraction). The process would benefit from mixed-initiative collaboration, where users guide the process to meaningfully reflect their cultures, and LLMs steer the process to meet the researcher{'}s goals. We propose CultureCartography as a methodology that operationalizes this mixed-initiative vision. Here, an LLM initializes annotation with questions for which it has low-confidence answers, making explicit both its prior knowledge and the gaps therein. This allows a human respondent to fill these gaps and steer the model towards salient topics through direct edits. We implement Culture Cartography as a tool called Culture Explorer. Compared to a baseline where humans answer LLM-proposed questions, we find that Culture Explorer more effectively produces knowledge that strong models like DeepSeek R1, Llama-4 and GPT-4o are missing, even with web search. Fine-tuning on this data boosts the accuracy of Llama models by up to 19.2{\%} on related culture benchmarks."
+}
+
+@inproceedings{rezaei-etal-2025-egonormia,
+    bibtex_show={true},
+    title = "{E}go{N}ormia: Benchmarking Physical-Social Norm Understanding",
+    author = "Rezaei, MohammadHossein  and
+      Fu, Yicheng  and
+      Cuvin, Phil  and
+      Ziems, Caleb  and
+      Zhang, Yanzhe  and
+      Zhu, Hao  and
+      Yang, Diyi",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2025",
+    month = jul,
+    year = "2025",
+    abbr={ACL},
+    preview={egonormia.png},
+    arxiv={2502.20490},
+    website={https://opensocial.world/leaderboard},
+    poster={posters/egonormia-a0.pdf},
+    code={https://github.com/Open-Social-World/EgoNormia},
+    selected={false},
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    html = "https://aclanthology.org/2025.findings-acl.985/",
+    doi = "10.18653/v1/2025.findings-acl.985",
+    pages = "19256--19283",
+    ISBN = "979-8-89176-256-5",
+    abstract = "Human activity is moderated by norms; however, supervision for normative reasoning is sparse, particularly where norms are physically- or socially-grounded. We thus present EgoNormia $\lVert \epsilon \rVert$, comprising 1,853 (200 for EgoNormia-verified) multiple choice questions (MCQs) grounded within ego-centric videos of human interactions, enabling the evaluation and improvement of normative reasoning in vision-language models (VLMs). spans seven norm categories: safety, privacy, proxemics, politeness, cooperation, coordination/proactivity, and communication/legibility. To compile this dataset at scale, we propose a novel pipeline to generate grounded MCQs from raw egocentric video. Our work demonstrates that current state-of-the-art VLMs lack robust grounded norm understanding, scoring a maximum of 54{\%} on EgoNormia and 58{\%} on EgoNormia-verified, with performance across norm categories indicating significant risks of safety and privacy when VLMs are used in real-world agents. We additionally explore methods for improving normative understanding, demonstrating a naive retrieval-based generation (RAG) method using can enhance normative reasoning in VLMs."
+}
 
 @inproceedings{shi2024culturebank,
   bibtex_show={true},
@@ -182,7 +246,7 @@
   code={https://github.com/SALT-NLP/normbank},
   slides={slides/normbank.pdf},
   poster={posters/normbank-poster-a0.pdf},
-  selected={true},
+  selected={false},
   html={https://aclanthology.org/2023.acl-long.429/},
 }
 
